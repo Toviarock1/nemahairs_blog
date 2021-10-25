@@ -1,0 +1,8 @@
+*{
+    border: 0.5px solid red;
+    box-sizing: border-box;
+}
+.Nav{
+    height: 65px;
+    font-family: 'Poppins',sans-serif;
+}
