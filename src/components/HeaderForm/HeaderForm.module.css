@@ -1,3 +1,10 @@
-.FormWrapper{
-    width: 161px;
+.FormWrapper {
+  width: 161px;
+}
+
+@media screen and (max-width: 900px) {
+  .FormWrapper {
+    width: 50%;
+    margin: auto;
+  }
 }
