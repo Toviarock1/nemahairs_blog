@@ -22,7 +22,7 @@ const Carousel = () => {
         }
     ]
     return (
-        <div>
+        <section>
             <Slide className={classes.Carousel}>
                 {test.map(slideItem => {
                     return <Slide.Item>
@@ -41,7 +41,7 @@ const Carousel = () => {
                     </Slide.Item>
                 })}
             </Slide>
-        </div>
+        </section>
 
     )
 }

@@ -1,0 +1,29 @@
+:root {
+  --color: #3c3163;
+  --transition-time: 0.5s;
+}
+
+.CardsWrapper {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  padding: 4rem;
+  margin: 0 auto;
+  width: max-content;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1285px) {
+  .CardsWrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .CardsWrapper {
+    padding: 4rem 2rem;
+    grid-template-columns: 1fr;
+  }
+}
