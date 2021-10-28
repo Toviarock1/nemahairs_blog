@@ -1,5 +1,8 @@
 .Subcribe {
   padding-top: 77px;
+  border-bottom-width: 1px;
+  border-bottom-color: #808080;
+  border-bottom-style: solid;
 }
 .FormWrapper {
   display: flex;

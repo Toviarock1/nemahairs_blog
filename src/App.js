@@ -4,6 +4,7 @@ import Header from "./views/Header/Header";
 import Carousel from "./views/Carousel/Carousel";
 import Posts from "./views/Posts/Posts";
 import Subcribe from "./views/Subcribe/Subcribe";
+import Footer from "./views/Footer/Footer";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Carousel />
       <Posts />
       <Subcribe />
+      <Footer />
     </>
   );
 }
