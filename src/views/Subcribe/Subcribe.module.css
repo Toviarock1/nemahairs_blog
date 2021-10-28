@@ -1,0 +1,65 @@
+.Subcribe {
+  padding-top: 77px;
+}
+.FormWrapper {
+  display: flex;
+}
+.FormInput {
+  padding-right: 100px !important;
+  font-family: "Poppins", sans-serif;
+  background: #808080;
+  color: #b7b7b7;
+  border: 1px solid #808080;
+  font-weight: 500;
+  border-radius: 0;
+  height: 34px;
+}
+.FormInput:focus {
+  background: #808080;
+  color: #b7b7b7;
+  border: 1px solid #808080;
+  box-shadow: none;
+  height: 34px;
+  font-size: 13px;
+}
+.FormInput::placeholder {
+  color: #b7b7b7;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+}
+.FormBtn {
+  margin-left: -99px;
+  background-color: #303030;
+  border: 0;
+  color: #b7b7b7;
+  outline: none;
+  min-height: 32px;
+  letter-spacing: normal;
+  background: transparent;
+  font-family: "Poppins", sans-serif;
+  height: 34px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+.FormBtn:hover {
+  background: transparent;
+}
+.Bg {
+  background-color: #212529;
+  padding: 15px 0;
+}
+.PWrapper {
+  margin: 0px 20px 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #b7b7b7;
+  text-transform: uppercase;
+  padding-top: 7px;
+}
+p {
+  margin: 0;
+}
+.Icon {
+  color: #b7b7b7;
+  font-size: 32px;
+}
