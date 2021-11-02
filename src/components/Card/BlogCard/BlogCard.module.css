@@ -5,7 +5,7 @@
       rgba(0, 0, 0, var(--bg-filter-opacity)),
       rgba(0, 0, 0, var(--bg-filter-opacity))
     ),
-    url(./../../assets/images/Announcement-creatives-3_Article-header.png);
+    url(./../../../assets/images/Announcement-creatives-3_Article-header.png);
   height: 315px;
   width: 15em;
   font-size: 1.5em;

@@ -1,0 +1,17 @@
+.PopularPost {
+  margin: 10px 0;
+  border: 1px solid #e8e8e8;
+}
+.PopularPost img {
+  width: 100% !important;
+  border-radius: 0 !important;
+}
+.PopularPost a {
+  display: block;
+  margin: 10px 0;
+}
+.PopularPost span {
+  color: #808080;
+  font-size: 12px;
+  font-family: 'Source Sans Pro',sans-serif;
+}

@@ -1,0 +1,28 @@
+.FormWrapper {
+  display: block !important;
+}
+.Input {
+  margin-top: 13px;
+  width: 100% !important;
+  border-radius: 0;
+  border: 1px solid #e8e8e8;
+  border-radius: 0 !important;
+  font-size: 12px;
+  color: #232323;
+  text-align: center;
+}
+.Btn {
+  width: 100%;
+  margin-top: 13px;
+  border-radius: 0;
+  text-transform: uppercase;
+  margin: 10px 0 0 !important;
+  background-color: #232323;
+  border: 2px solid #232323;
+  color: #fff;
+  font-size: 11px;
+}
+.Btn:hover {
+  background-color: transparent;
+  color: #232323;
+}

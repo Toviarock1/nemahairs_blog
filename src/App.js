@@ -1,19 +1,15 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "./views/Header/Header";
-import Carousel from "./views/Carousel/Carousel";
-import Posts from "./views/Posts/Posts";
-import Subcribe from "./views/Subcribe/Subcribe";
-import Footer from "./views/Footer/Footer";
+import Layout from "./hoc/Layout/Layout";
+import Post from "./views/Post/Post";
+import './App.css'
 
 function App() {
   return (
     <>
-      <Header />
-      <Carousel />
-      <Posts />
-      <Subcribe />
-      <Footer />
+      <Layout>
+        <Post />
+      </Layout>
     </>
   );
 }

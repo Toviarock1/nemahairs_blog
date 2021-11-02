@@ -10,7 +10,7 @@
   font-family: "Source Sans Pro", sans-serif !important;
 }
 .Footer a,
-p {
+.Footer p {
   text-decoration: none;
   color: #808080;
 }
@@ -18,7 +18,7 @@ p {
   color: #b5b5b5;
 }
 .Footer h2,
-h4 {
+.Footer h4 {
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
