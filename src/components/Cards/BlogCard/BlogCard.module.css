@@ -1,12 +1,11 @@
 .Card {
   font-family: "Heebo";
   --bg-filter-opacity: 0.5;
-  background-image: linear-gradient(
+  /* background: linear-gradient(
       rgba(0, 0, 0, var(--bg-filter-opacity)),
       rgba(0, 0, 0, var(--bg-filter-opacity))
-    ),
-    url(./../../../assets/images/Announcement-creatives-3_Article-header.png);
-  height: 315px;
+    ); */
+  height: 261px;
   width: 15em;
   font-size: 1.5em;
   color: white;
@@ -20,6 +19,11 @@
   position: relative;
   overflow: hidden;
   text-decoration: none;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.Content {
+  margin-left: -13px;
 }
 
 .Card:hover {
@@ -35,8 +39,8 @@
 }
 
 .Card h2 a {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 
 .Author {
