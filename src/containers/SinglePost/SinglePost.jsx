@@ -36,7 +36,7 @@ const SinglePost = () => {
             <Post
                 loading={loading}
                 title={post.title}
-                img={post.mainImage.asset.url}
+                img={ post.mainImage && post.mainImage.asset && post.mainImage.asset.url }
                 content={post.body}
             />
         </>

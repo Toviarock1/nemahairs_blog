@@ -5,6 +5,7 @@
 .Post img {
   max-width: 100%;
   height: auto;
+  width: 100%;
 }
 .Container {
   margin-bottom: 243px;

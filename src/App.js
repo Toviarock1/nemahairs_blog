@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "./hoc/Layout/Layout";
 import Home from "./containers/Home/Home";
@@ -11,8 +11,12 @@ function App() {
     <>
       <Layout>
         <Switch>
-          <Route path='/' render={Home} exact/>
-          <Route path='/blog/:slug' render={SinglePost} exact/>
+          <Route path='/' exact>
+            <Home />
+          </Route>
+          <Route path='/blog/:slug' exact>
+            <SinglePost />
+          </Route>
         </Switch>
       </Layout>
     </>
