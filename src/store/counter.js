@@ -1,36 +1,45 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit'
+import {
+  createSlice,
+  createAsyncThunk,
+} from "@reduxjs/toolkit";
+import client from "./../client";
 
-const counterSlice = createSlice({
-  name: 'counter',
+export const fetchAllPost = createAsyncThunk("posts/fetchAllPost", async () => {
+  const response = await client.fetch(
+    `*[_type == "post"] {
+                    title,
+                    slug,
+                    body,
+                    "tag": *[_type=='category']{ title },
+                    author -> {
+                        name
+                    },
+                    mainImage {
+                        asset -> {
+                            _id,
+                            url
+                        },
+                        alt
+                    }
+                }`
+  );
+  return response;
+});
+
+const allPostSlice = createSlice({
+  name: "allPost",
   initialState: {
-    value: 0
+    allPost: [],
+    loading: true,
   },
-  reducers: {
-    incremented: state => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
+  extraReducers: {
+    [fetchAllPost.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.allPost = action.payload;
     },
-    decremented: state => {
-      state.value -= 1
-    }
-  }
-})
+  },
+});
 
-export const { incremented, decremented } = counterSlice.actions
+export const { incremented, decremented } = allPostSlice.actions;
 
-export const store = configureStore({
-  reducer: counterSlice.reducer
-})
-
-// Can still subscribe to the store
-store.subscribe(() => console.log(store.getState()))
-
-// Still pass action objects to `dispatch`, but they're created for us
-store.dispatch(incremented())
-// {value: 1}
-store.dispatch(incremented())
-// {value: 2}
-store.dispatch(decremented())
+export default allPostSlice.reducer
