@@ -13,7 +13,7 @@ import classes from './Post.module.css';
 const Post = (props) => {
     return (
         <>
-            {!props.loading ? <section className={classes.Post}>
+            <section className={classes.Post}>
                 <div>
                     <Container className={classes.Container}>
                         <Row>
@@ -21,12 +21,12 @@ const Post = (props) => {
                                 <div className={classes.TitleWrapper}>
                                     <h2>{props.title}</h2>
                                     <div>
-                                        <span>January 26, 2021</span>
+                                        <span>{props.publishedAt}</span>
                                     </div>
                                 </div>
                                 <img src={props.img} alt={props.title} />
                                 <div>
-                                    <BlockContent blocks={props.content} projectId="7k0zkofm"  dataset="production" />
+                                    <BlockContent blocks={props.content} projectId="7k0zkofm" dataset="production" />
                                 </div>
                                 <div>
                                     <div>
@@ -42,7 +42,7 @@ const Post = (props) => {
                             <Col>
                                 <AboutMeCard />
                                 <FollowUsCard />
-                                <AdvertisementCard />
+                                <AdvertisementCard link={props.link} img={props.advertImg} alt={props.advertAlt} />
                                 <CategoriesCard />
                                 <PopularPostCard />
                                 <ArchiveCard />
@@ -51,7 +51,7 @@ const Post = (props) => {
                         </Row>
                     </Container>
                 </div>
-            </section> : 'loading'}
+            </section>
         </>
     )
 }

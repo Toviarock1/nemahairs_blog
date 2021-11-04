@@ -2,7 +2,7 @@ import {
   createSlice,
   createAsyncThunk,
 } from "@reduxjs/toolkit";
-import client from "./../client";
+import client from "../client";
 
 export const fetchAllPost = createAsyncThunk("posts/fetchAllPost", async () => {
   const response = await client.fetch(
@@ -36,8 +36,8 @@ const allPostSlice = createSlice({
     [fetchAllPost.fulfilled]: (state, action) => {
       state.loading = false;
       state.allPost = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const { incremented, decremented } = allPostSlice.actions;

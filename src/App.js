@@ -6,12 +6,14 @@ import Home from "./containers/Home/Home";
 import "./App.css";
 import SinglePost from "./containers/SinglePost/SinglePost";
 import { useDispatch } from "react-redux";
-import { fetchAllPost } from "./store/counter";
+import { fetchAllPost } from "./store/allPost";
+import { fetchAdvert, toggleLoading } from "./store/singlePost";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchAllPost())
+    dispatch(fetchAllPost());
+    //dispatch(toggleLoading())
   }, [dispatch])
   return (
     <>

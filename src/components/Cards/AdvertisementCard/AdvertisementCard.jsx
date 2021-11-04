@@ -1,13 +1,11 @@
-import React from 'react'
-import { Button } from 'react-bootstrap';
-import image from './../../../assets/images/Announcement-creatives-3_Article-header.png';
+import React from 'react';
 import classes from './AdvertisementCard.module.css';
 
-const AdvertisementCard = () => {
+const AdvertisementCard = (props) => {
     return (
         <div className={classes.Advertisement}>
-            <a href="/">
-                <img src={image} />
+            <a href={props.link}>
+                <img src={props.img} alt={props.alt} />
             </a>
         </div>
     )
