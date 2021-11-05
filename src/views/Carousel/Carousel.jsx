@@ -13,19 +13,21 @@ const Carousel = () => {
             description: 'hello secvnfnj nvlnkd lndsnvk',
             btnText: 'view post',
             btnBgColor: 'pink',
-            btnColor: 'red'
+            btnColor: 'red',
+            id: 1
         },
         {
             title: 'first slide',
             description: 'hello secvnfnj nvlnkd lndsnvk',
-            btnText: 'view post'
+            btnText: 'view post',
+            id: 2
         }
     ]
     return (
         <section>
             <Slide className={classes.Carousel}>
                 {test.map(slideItem => {
-                    return <Slide.Item>
+                    return <Slide.Item key={slideItem.id}>
                         <img
                             width={900}
                             height={550}

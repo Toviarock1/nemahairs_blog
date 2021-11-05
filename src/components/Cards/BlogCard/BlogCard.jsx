@@ -14,7 +14,7 @@ const BlogCard = (props) => {
                         <div className={classes.ContentWrapper}>
                             <a href="/" className={classes.Author}>{`By ${props.author}`}</a>
                             <h2>
-                                <Link to={`/blog/${props.slug}`} >
+                                <Link to={`/post/${props.slug}`} >
                                     {props.title}
                                 </Link>
                             </h2>

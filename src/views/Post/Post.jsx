@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Button } from 'react-bootstrap';
 import AboutMeCard from '../../components/Cards/AboutMeCard/AboutMeCard';
 import AdvertisementCard from '../../components/Cards/AdvertisementCard/AdvertisementCard';
 import ArchiveCard from '../../components/Cards/ArchiveCard/ArchiveCard';
@@ -25,18 +25,15 @@ const Post = (props) => {
                                     </div>
                                 </div>
                                 <img src={props.img} alt={props.title} />
-                                <div>
-                                    <BlockContent blocks={props.content} projectId="7k0zkofm" dataset="production" />
+                                <div className={classes.Voice}>
+                                    <p>Not in the mood to read this post. we got you why not listen to it instead</p>
+                                    <Button variant="dark" onClick={props.start}>Listen</Button>
+                                    <Button variant="dark" onClick={props.pause}>Pause</Button>
+                                    <Button variant="dark" onClick={props.resume}>Resume</Button>
+                                    <Button variant="dark" onClick={props.stop}>Stop</Button>
                                 </div>
-                                <div>
-                                    <div>
-                                        <label htmlFor="name">name</label>
-                                        <input type="text" id="name" />
-                                        <label htmlFor="name">name</label>
-                                        <input type="text" id="name" />
-                                        <label htmlFor="name">name</label>
-                                        <input type="text" id="name" />
-                                    </div>
+                                <div className={classes.TextContent}>
+                                    <BlockContent blocks={props.content} projectId="7k0zkofm" dataset="production" />
                                 </div>
                             </Col>
                             <Col>

@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import client from "../client";
 
-export const fetchAdvert = createAsyncThunk("post/fetchAdvert", async (params, {dispatch}) => {
-  // dispatch(toggleLoading())
-  const response = await client.fetch(
-    `*[_type == "advertisement"] {
+export const fetchAdvert = createAsyncThunk(
+  "post/fetchAdvert",
+  async (params, { dispatch }) => {
+    // dispatch(toggleLoading())
+    const response = await client.fetch(
+      `*[_type == "advertisement"] {
         title,
         link,
         image {
@@ -14,9 +16,10 @@ export const fetchAdvert = createAsyncThunk("post/fetchAdvert", async (params, {
             }
         }
     }`
-  );
-  return response[0];
-});
+    );
+    return response[0];
+  }
+);
 
 export const fetchPost = createAsyncThunk("post/fetchPost", async (slug) => {
   const response = await client.fetch(
@@ -45,11 +48,11 @@ const singlePostSlice = createSlice({
   initialState: {
     advert: [],
     loading: true,
-    post: []
+    post: [],
   },
   reducers: {
     toggleLoading: (state) => {
-      return {...state, loading: false }
+      return { ...state, loading: false };
     },
   },
   extraReducers: {
@@ -57,7 +60,7 @@ const singlePostSlice = createSlice({
       state.loading = true;
     },
     [fetchAdvert.fulfilled]: (state, action) => {
-      state.advert = action.payload; 
+      state.advert = action.payload;
     },
     [fetchAdvert.rejected]: (state) => {
       state.loading = false;
@@ -71,7 +74,7 @@ const singlePostSlice = createSlice({
     },
     [fetchPost.rejected]: (state) => {
       state.loading = false;
-    }
+    },
   },
 });
 
