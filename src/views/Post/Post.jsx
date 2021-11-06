@@ -32,7 +32,7 @@ const Post = (props) => {
                                     <Button variant="dark" onClick={props.resume}>Resume</Button>
                                     <Button variant="dark" onClick={props.stop}>Stop</Button>
                                 </div>
-                                <div className={classes.TextContent}>
+                                <div className={`speak ${classes.TextContent}`}>
                                     <BlockContent blocks={props.content} projectId="7k0zkofm" dataset="production" />
                                 </div>
                             </Col>
@@ -43,7 +43,7 @@ const Post = (props) => {
                                 <CategoriesCard />
                                 <PopularPostCard />
                                 <ArchiveCard />
-                                <Newsletter />
+                                <Newsletter change={props.change} submit={props.submit} value={props.value} />
                             </Col>
                         </Row>
                     </Container>

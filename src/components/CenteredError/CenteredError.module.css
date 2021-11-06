@@ -1,0 +1,6 @@
+.Wrapper{
+    display: grid;
+    align-content: center;
+    min-height: 550px;
+    text-align: center;
+}

@@ -18,7 +18,7 @@ export const fetchAllPost = createAsyncThunk("posts/fetchAllPost", async () => {
             },
             alt
         }
-    }`
+    }[0...8]`
   );
   return response;
 });

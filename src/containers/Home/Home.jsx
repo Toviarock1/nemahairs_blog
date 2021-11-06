@@ -5,7 +5,7 @@ import Carousel from './../../views/Carousel/Carousel';
 
 const Home = () => {
     const posts = useSelector(state => state.posts.allPost)
-    
+    console.log(posts)
     return (
         <>
             <Carousel />

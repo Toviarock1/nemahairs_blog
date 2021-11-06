@@ -49,6 +49,7 @@ const singlePostSlice = createSlice({
     advert: [],
     loading: true,
     post: [],
+    error: false
   },
   reducers: {
     toggleLoading: (state) => {
@@ -74,6 +75,7 @@ const singlePostSlice = createSlice({
     },
     [fetchPost.rejected]: (state) => {
       state.loading = false;
+      state.error = true;
     },
   },
 });
