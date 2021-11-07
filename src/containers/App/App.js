@@ -1,28 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Layout from "./hoc/Layout/Layout";
-import Home from "./containers/Home/Home";
+import Layout from "../../hoc/Layout/Layout";
+import Home from "./../Home/Home";
 import "./App.css";
-import SinglePost from "./containers/SinglePost/SinglePost";
+import SinglePost from "./../SinglePost/SinglePost";
+import Search from './../Search/Search'
 import { useDispatch } from "react-redux";
-import { fetchAllPost } from "./store/allPost";
+import { fetchAllPost } from "../../store/allPost";
 
 function App() {
+  const [searchText, setSearchText] = useState('');
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchAllPost());
-    //dispatch(toggleLoading())
   }, [dispatch])
+
+  console.log(searchText)
   return (
     <>
-      <Layout>
+      <Layout searchText={searchText} setSearchText={e => setSearchText(e.target.value)}>
         <Switch>
           <Route path='/' exact>
             <Home />
           </Route>
           <Route path='/post/:slug' exact>
             <SinglePost />
+          </Route>
+          <Route path='/search/:slug' exact>
+            <Search />
           </Route>
           <Route>
              <Redirect to='/' />

@@ -5,7 +5,7 @@ import HeaderForm from '../../components/HeaderForm/HeaderForm';
 //css
 import classes from './Header.module.css';
 
-const Header = () => {
+const Header = (props) => {
     return (
         <header>
             <Navbar collapseOnSelect className={classes.Nav} expand="lg" bg="dark" variant="dark">
@@ -27,7 +27,7 @@ const Header = () => {
                             <Nav.Link href="/contact">Contact</Nav.Link>
                         </Nav>
                         <Nav>
-                           <HeaderForm />
+                            <HeaderForm searchText={props.searchText} setSearchText={props.setSearchText} />
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

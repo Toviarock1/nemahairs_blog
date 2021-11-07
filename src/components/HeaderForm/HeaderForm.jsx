@@ -1,11 +1,12 @@
 import React from 'react'
 //react bootstrap components
-import { FormControl, InputGroup, Button } from 'react-bootstrap'
+import { FormControl, InputGroup} from 'react-bootstrap'
 import { FaSearch } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 //css
 import classes from './HeaderForm.module.css';
 
-const HeaderForm = () => {
+const HeaderForm = (props) => {
     return (
         <>
             <InputGroup className={classes.FormWrapper}>
@@ -13,10 +14,12 @@ const HeaderForm = () => {
                     placeholder="search blog"
                     aria-label="search"
                     aria-describedby="search_bar"
+                    onChange={props.setSearchText}
+                    value={props.searchText}
                 />
-                <Button variant="outline-secondary" id="button-addon2">
+                <Link to={`/search/${props.searchText}`}>
                     <FaSearch />
-                </Button>
+                </Link>
             </InputGroup>
         </>
     )

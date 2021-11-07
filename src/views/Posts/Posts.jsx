@@ -10,7 +10,7 @@ const Posts = (props) => {
                 return <BlogCard
                     title={post.title}
                     key={post.title}
-                    img={post.mainImage.asset.url}
+                    img={post.mainImage && post.mainImage.asset && post.mainImage.asset.url}
                     slug={post.slug.current}
                     tag={post.tag[0].title}
                     author={post.author.name}

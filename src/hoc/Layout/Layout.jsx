@@ -5,7 +5,7 @@ import Header from '../../views/Header/Header';
 const Layout = (props) => {
     return (
         <>
-            <Header />
+            <Header searchText={props.searchText} setSearchText={props.setSearchText} />
             <main>
                 {props.children}
             </main>
