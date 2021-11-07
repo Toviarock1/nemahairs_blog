@@ -1,19 +1,18 @@
 import React from 'react'
 import Categories from './Categories/Categories';
 
-const CategoriesCard = () => {
+const CategoriesCard = (props) => {
     return (
         <div className="CardWrapper">
             <h3>Categories</h3>
-            <Categories />
-            <Categories />
-            <Categories />
-            <Categories />
-            <Categories />
-            <Categories />
-            <Categories />
-            <Categories />
-            <Categories />
+            {
+                props.categories.map((category) => {
+                    return <Categories
+                    category={category.title}
+                    categoryLength={category.posts.length}
+                    />
+                })
+            }
         </div>
     )
 }

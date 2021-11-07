@@ -1,13 +1,13 @@
 import React from 'react'
 import classes from './Categories.module.css';
 
-const Categories = () => {
+const Categories = (props) => {
     return (
         <div className={classes.Categories}>
         <a href="/">
-            Fashion
+           {props.category}
         </a>
-        <span>2</span>
+        <span>{props.categoryLength}</span>
         </div>
     )
 }

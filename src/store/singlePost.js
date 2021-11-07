@@ -43,13 +43,30 @@ export const fetchPost = createAsyncThunk("post/fetchPost", async (slug) => {
   return response[0];
 });
 
+export const fetchAllCategories = createAsyncThunk("posts/fetchAllCategories", async () => {
+  const response = await client.fetch(
+    `*[_type == "category"]{
+      _id,
+      _type,
+      title,
+      "posts": *[_type == "post" && references(^._id)]{
+        title,
+        slug
+      }
+    }`
+  );
+  return response;
+});
+
+
 const singlePostSlice = createSlice({
   name: "singlePost",
   initialState: {
     advert: [],
     loading: true,
     post: [],
-    error: false
+    error: false,
+    categories: []
   },
   reducers: {
     toggleLoading: (state) => {
@@ -76,6 +93,13 @@ const singlePostSlice = createSlice({
     [fetchPost.rejected]: (state) => {
       state.loading = false;
       state.error = true;
+    },
+    [fetchAllCategories.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [fetchAllCategories.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.categories = action.payload;
     },
   },
 });

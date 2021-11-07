@@ -1,7 +1,9 @@
 .FormWrapper {
   width: 161px;
 }
-
+.Link{
+  border: 1px solid #6e6e6e;
+}
 @media screen and (max-width: 900px) {
   .FormWrapper {
     width: 50%;

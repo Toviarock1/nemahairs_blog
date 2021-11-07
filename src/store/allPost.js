@@ -18,7 +18,7 @@ export const fetchAllPost = createAsyncThunk("posts/fetchAllPost", async () => {
             },
             alt
         }
-    }[0...8]`
+    }[0...7]`
   );
   return response;
 });
@@ -45,6 +45,7 @@ export const fetchAllSearchedPost = createAsyncThunk("posts/fetchAllSearchedPost
   return response;
 });
 
+
 const allPostSlice = createSlice({
   name: "allPost",
   initialState: {
@@ -64,6 +65,7 @@ const allPostSlice = createSlice({
       state.loading = false;
       state.searchedPost = action.payload;
     },
+    
   },
 });
 

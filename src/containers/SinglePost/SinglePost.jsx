@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import CenteredError from '../../components/CenteredError/CenteredError'
 import CenteredSpinner from '../../components/CenteredSpinner/CenteredSpinner'
-import { fetchAdvert, fetchPost } from '../../store/singlePost'
+import { fetchAdvert, fetchAllCategories, fetchPost } from '../../store/singlePost'
 import Post from '../../views/Post/Post'
 
 
@@ -16,6 +16,7 @@ const SinglePost = () => {
     const loading = useSelector(state => state.post.loading);
     const advert = useSelector(state => state.post.advert);
     const error = useSelector(state => state.post.error);
+    const allCategories = useSelector(state => state.post.categories);
     const dispatch = useDispatch();
     //params
     const { slug } = useParams();
@@ -23,6 +24,7 @@ const SinglePost = () => {
     useEffect(() => {
         dispatch(fetchAdvert());
         dispatch(fetchPost(slug));
+        dispatch(fetchAllCategories());
     }, [slug, dispatch]);
 
     //read post aloud
@@ -60,6 +62,7 @@ const SinglePost = () => {
                     start={textToVoiceHandler}
                     pause={pauseTextToVoiceHandler}
                     resume={resumeTextToVoiceHandler}
+                    categories={allCategories}
                 />
             );
         } else {

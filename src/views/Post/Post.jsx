@@ -40,7 +40,7 @@ const Post = (props) => {
                                 <AboutMeCard />
                                 <FollowUsCard />
                                 <AdvertisementCard link={props.link} img={props.advertImg} alt={props.advertAlt} />
-                                <CategoriesCard />
+                                <CategoriesCard categories={props.categories}/>
                                 <PopularPostCard />
                                 <ArchiveCard />
                                 <Newsletter change={props.change} submit={props.submit} value={props.value} />

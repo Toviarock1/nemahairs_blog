@@ -17,7 +17,7 @@ const HeaderForm = (props) => {
                     onChange={props.setSearchText}
                     value={props.searchText}
                 />
-                <Link to={`/search/${props.searchText}`}>
+                <Link to={`/search/${props.searchText}`} className={`btn btn-dark ${classes.Link}`}>
                     <FaSearch />
                 </Link>
             </InputGroup>
