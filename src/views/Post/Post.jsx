@@ -14,7 +14,7 @@ const Post = (props) => {
     return (
         <>
             <section className={classes.Post}>
-                <div>
+                <article>
                     <Container className={classes.Container}>
                         <Row>
                             <Col xs={9}>
@@ -35,19 +35,31 @@ const Post = (props) => {
                                 <div className={`speak ${classes.TextContent}`}>
                                     <BlockContent blocks={props.content} projectId="7k0zkofm" dataset="production" />
                                 </div>
+                                <div>
+                                    {props.commentDetails.map((comment) => {
+                                       return <>
+                                            <p>{comment.fullName}</p>
+                                            <p>{comment.comment}</p>
+                                        </>
+                                    })}
+                                </div>
+                                <form>
+                                    <input type="text" name="full_name" value={props.userFullName} onChange={props.setUserFullName} />
+                                    <textarea name="" id="" cols="30" rows="10" value={props.comment} onChange={props.setComment}></textarea>
+                                    <input type="button" value="submit" onClick={props.onSubmitComment} />
+                                </form>
                             </Col>
                             <Col>
                                 <AboutMeCard />
                                 <FollowUsCard />
                                 <AdvertisementCard link={props.link} img={props.advertImg} alt={props.advertAlt} />
-                                <CategoriesCard categories={props.categories}/>
+                                <CategoriesCard categories={props.categories} />
                                 <PopularPostCard />
-                                <ArchiveCard />
                                 <Newsletter change={props.change} submit={props.submit} value={props.value} />
                             </Col>
                         </Row>
                     </Container>
-                </div>
+                </article>
             </section>
         </>
     )

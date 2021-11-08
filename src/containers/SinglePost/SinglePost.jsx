@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import CenteredError from '../../components/CenteredError/CenteredError'
@@ -11,6 +12,13 @@ const SinglePost = () => {
     //variables
     let content = <CenteredSpinner />;
     let newTime;
+    //state
+    //data to post to the backend
+    const [fullName, setFullName] = useState('');
+    const [comment, setComment] = useState('');
+    //date gotton from the backend
+    const [commentDetails, setCommentDetails] = useState('');
+    let allComments = [];
     //redux
     const post = useSelector(state => state.post.post);
     const loading = useSelector(state => state.post.loading);
@@ -25,7 +33,23 @@ const SinglePost = () => {
         dispatch(fetchAdvert());
         dispatch(fetchPost(slug));
         dispatch(fetchAllCategories());
+       
     }, [slug, dispatch]);
+
+    // axios.get(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}.json`)
+    // .then(res => {
+    //     setCommentDetails(res.data);
+    // }).catch(err => console.log(err))
+
+    useEffect(() => {
+        axios.get(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}.json`)
+    .then(res => {
+        setCommentDetails(res.data);
+    }).catch(err => console.log(err))
+
+    }, [])
+
+    console.log(commentDetails)
 
     //read post aloud
     const textToVoiceHandler = () => {
@@ -41,6 +65,19 @@ const SinglePost = () => {
         window.responsiveVoice.resume();
     }
 
+    const submitCommentHandler = () => {
+        console.log('start')
+        axios.post(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}.json`, {"fullName": fullName,"comment":comment})
+        .then(res => console.log(res)).catch(err => console.log(err))
+    };
+
+    if(commentDetails) {
+        for(let key in commentDetails) {
+            allComments.push(commentDetails[key])
+        }
+    }
+
+    console.log(allComments)
 
     if (!loading) {
         if (!error) {
@@ -63,6 +100,12 @@ const SinglePost = () => {
                     pause={pauseTextToVoiceHandler}
                     resume={resumeTextToVoiceHandler}
                     categories={allCategories}
+                    userFullName={fullName}
+                    setUserFullName={e => setFullName(e.target.value)}
+                    comment={comment}
+                    setComment={e => setComment(e.target.value)}
+                    onSubmitComment={submitCommentHandler}
+                    commentDetails={allComments}
                 />
             );
         } else {
