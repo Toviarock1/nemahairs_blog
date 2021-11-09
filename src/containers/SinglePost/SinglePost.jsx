@@ -24,7 +24,7 @@ const SinglePost = () => {
     const [comment, setComment] = useState('');
     const [repliedCommentMessage, setRepliedCommentMessage] = useState('');
     const [repliedCommentFullName, setRepliedCommentFullName] = useState('');
-    const [toggleReplyForm, setToggleReplyForm] = useState(false);
+    // const [toggleReplyForm, setToggleReplyForm] = useState(false);
     //redux
     const post = useSelector(state => state.post.post);
     const loading = useSelector(state => state.post.loading);
@@ -66,33 +66,39 @@ const SinglePost = () => {
             .then(res => {
                 dispatch(fetchAllComments(slug));
             }).catch(err => console.log(err))
-        
+
     };
 
     const submitCommentReplyHandler = (event, id) => {
         console.log('start')
-        axios.post(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}/${id}/reply.json`, { "fullName": repliedCommentFullName, "comment": repliedCommentMessage, "id" : id })
+        axios.post(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}/${id}/reply.json`, { "fullName": repliedCommentFullName, "comment": repliedCommentMessage, "id": id })
             .then(res => {
                 dispatch(fetchAllComments(slug));
                 // console.log("worked")
             }).catch(err => console.log(err))
-        
+
     };
 
-    const showReplyBtnHandler = () => {
-        setToggleReplyForm(!toggleReplyForm);
+    const showReplyBtnHandler = (id) => {
+        if (document.querySelector(`#commentReplyForm${id}`).style.display === "grid") {
+            document.querySelector(`#commentReplyForm${id}`).style.display = "none";
+            document.querySelector(`.replyBtn${id}`).textContent = "Reply";
+        } else {
+            document.querySelector(`#commentReplyForm${id}`).style.display = "grid";
+            document.querySelector(`.replyBtn${id}`).textContent = "Close";
+        }
     }
-    
+
     if (commentDetails) {
         //loop through comments
         for (let key in commentDetails) {
             //loop through comments replies 
-            for(let relpies in commentDetails[key].reply) {
-                allReplies.push({...commentDetails[key].reply[relpies]})
+            for (let relpies in commentDetails[key].reply) {
+                allReplies.push({ ...commentDetails[key].reply[relpies] })
             }
             //push a new object with the comment Full name, message,id and reply
             //it checks if the reply has the same id with the main comment and attaches that to reply
-            allComments.push({...commentDetails[key], id: key, reply : allReplies.filter(reply => reply.id === key)})
+            allComments.push({ ...commentDetails[key], id: key, reply: allReplies.filter(reply => reply.id === key) })
         }
     }
 
@@ -145,7 +151,6 @@ const SinglePost = () => {
                     setComment={e => setComment(e.target.value)}
                     onSubmitComment={submitCommentHandler}
                     commentDetails={allComments}
-                    showReplyForm={toggleReplyForm}
                     replyBtn={showReplyBtnHandler}
                     onSubmitCommentReply={submitCommentReplyHandler}
                     repliedCommentFullName={repliedCommentFullName}

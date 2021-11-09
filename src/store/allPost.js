@@ -49,9 +49,14 @@ const allPostSlice = createSlice({
   initialState: {
     allPost: [],
     loading: true,
-    searchedPost: []
+    searchedPost: [],
+    allPostError: false
   },
   extraReducers: {
+    [fetchAllPost.rejected]: (state, action) => {
+      state.loading = false;
+      state.allPostError = true;
+    },
     [fetchAllPost.fulfilled]: (state, action) => {
       state.loading = false;
       state.allPost = action.payload;

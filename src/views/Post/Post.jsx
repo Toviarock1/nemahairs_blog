@@ -37,7 +37,7 @@ const Post = (props) => {
                                     <BlockContent blocks={props.content} projectId="7k0zkofm" dataset="production" />
                                 </div>
                                 {props.commentDetails ? <div>
-                                    {props.commentDetails.map((comment) => {
+                                    {props.commentDetails.map((comment, commentIndex) => {
                                         return <div key={comment.id}>
                                             <div className={classes.CommentContent}>
                                                 <div className="d-flex">
@@ -45,24 +45,26 @@ const Post = (props) => {
                                                     <p>{comment.fullName}</p>
                                                 </div>
                                                 <p className="ps-4">{comment.comment}</p>
-                                                <Button variant="dark" onClick={props.replyBtn}>Reply</Button>
+                                                <Button key={commentIndex} className={`replyBtn${commentIndex}`} variant="dark" onClick={() => props.replyBtn(commentIndex)}>Reply</Button>
                                                 {comment.reply !== '' &&
                                                     <div>
                                                         {
-                                                            comment.reply.map(reply => {
-                                                                return <>
-                                                                    <div className="d-flex">
-                                                                        <Image src={Avater} roundedCircle className={classes.CommentAvater} />
-                                                                        <p>{reply.fullName}</p>
-                                                                    </div>
-                                                                    <p className="ps-4">{reply.comment}</p>
-                                                                </>
+                                                            comment.reply.map((reply, index) => {
+                                                                return (
+                                                                    <>
+                                                                        <div className="d-flex" key={index}>
+                                                                            <Image src={Avater} roundedCircle className={classes.CommentAvater} />
+                                                                            <p>{reply.fullName}</p>
+                                                                        </div>
+                                                                        <p className="ps-4">{reply.comment}</p>
+                                                                    </>
+                                                                )
                                                             })
                                                         }
                                                     </div>
                                                 }
                                             </div>
-                                            <form className={`${classes.Comment}`} style={{ display: props.showReplyForm ? 'grid' : 'none' }}>
+                                            <form className={`${classes.Comment}`} style={{ display: 'none' }} id={`commentReplyForm${commentIndex}`}>
                                                 <input type="text" name="full_name" value={props.repliedCommentFullName} onChange={props.setRepliedCommentFullName} />
                                                 <textarea name="" id="" cols="30" rows="10" value={props.repliedCommentMessage} onChange={props.setRepliedCommentMessage}></textarea>
                                                 <Button variant="dark" className={classes.Btn} onClick={event => props.onSubmitCommentReply(event, comment.id)}>submit</Button>

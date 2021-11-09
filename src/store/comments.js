@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
-export const fetchAllComments = createAsyncThunk("comments/fetchAllComments", async (slug, thunkAPI) => {
+export const fetchAllComments = createAsyncThunk("comments/fetchAllComments", async (slug) => {
   const response = await axios.get(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}.json`);
   return response.data;
 });
