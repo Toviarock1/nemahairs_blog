@@ -1,5 +1,5 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import axios from './../../axios-instance'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import CenteredError from '../../components/CenteredError/CenteredError'
@@ -62,7 +62,7 @@ const SinglePost = () => {
 
     const submitCommentHandler = () => {
         console.log('start')
-        axios.post(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}.json`, { "fullName": fullName, "comment": comment, reply: '' })
+        axios.post(`/${slug}.json`, { "fullName": fullName, "comment": comment, reply: '' })
             .then(res => {
                 dispatch(fetchAllComments(slug));
             }).catch(err => console.log(err))
@@ -71,7 +71,7 @@ const SinglePost = () => {
 
     const submitCommentReplyHandler = (event, id) => {
         console.log('start')
-        axios.post(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}/${id}/reply.json`, { "fullName": repliedCommentFullName, "comment": repliedCommentMessage, "id": id })
+        axios.post(`/${slug}/${id}/reply.json`, { "fullName": repliedCommentFullName, "comment": repliedCommentMessage, "id": id })
             .then(res => {
                 dispatch(fetchAllComments(slug));
                 // console.log("worked")
