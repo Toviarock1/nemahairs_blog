@@ -84,10 +84,14 @@ const SinglePost = () => {
     }
     
     if (commentDetails) {
+        //loop through comments
         for (let key in commentDetails) {
+            //loop through comments replies 
             for(let relpies in commentDetails[key].reply) {
                 allReplies.push({...commentDetails[key].reply[relpies]})
             }
+            //push a new object with the comment Full name, message,id and reply
+            //it checks if the reply has the same id with the main comment and attaches that to reply
             allComments.push({...commentDetails[key], id: key, reply : allReplies.filter(reply => reply.id === key)})
         }
     }
