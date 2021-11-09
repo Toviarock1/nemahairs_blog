@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Container, Row, Button } from 'react-bootstrap';
+import { Col, Container, Row, Button, Image } from 'react-bootstrap';
 import AboutMeCard from '../../components/Cards/AboutMeCard/AboutMeCard';
 import AdvertisementCard from '../../components/Cards/AdvertisementCard/AdvertisementCard';
 import ArchiveCard from '../../components/Cards/ArchiveCard/ArchiveCard';
@@ -8,6 +8,7 @@ import FollowUsCard from '../../components/Cards/FollowUsCard/FollowUsCard';
 import Newsletter from '../../components/Cards/Newsletter/Newsletter';
 import PopularPostCard from '../../components/Cards/PopularPostCard/PopularPostCard';
 import BlockContent from '@sanity/block-content-to-react';
+import Avater from './../../assets/images/avater.png';
 import classes from './Post.module.css';
 
 const Post = (props) => {
@@ -35,18 +36,45 @@ const Post = (props) => {
                                 <div className={`speak ${classes.TextContent}`}>
                                     <BlockContent blocks={props.content} projectId="7k0zkofm" dataset="production" />
                                 </div>
-                                <div>
+                                {props.commentDetails ? <div>
                                     {props.commentDetails.map((comment) => {
-                                       return <>
-                                            <p>{comment.fullName}</p>
-                                            <p>{comment.comment}</p>
-                                        </>
+                                        return <div key={comment.id}>
+                                            <div className={classes.CommentContent}>
+                                                <div className="d-flex">
+                                                    <Image src={Avater} roundedCircle className={classes.CommentAvater} />
+                                                    <p>{comment.fullName}</p>
+                                                </div>
+                                                <p className="ps-4">{comment.comment}</p>
+                                                <Button variant="dark" onClick={props.replyBtn}>Reply</Button>
+                                                {comment.reply !== '' &&
+                                                    <div>
+                                                        {
+                                                            comment.reply.map(reply => {
+                                                                return <>
+                                                                    <div className="d-flex">
+                                                                        <Image src={Avater} roundedCircle className={classes.CommentAvater} />
+                                                                        <p>{reply.fullName}</p>
+                                                                    </div>
+                                                                    <p className="ps-4">{reply.comment}</p>
+                                                                </>
+                                                            })
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                            <form className={`${classes.Comment}`} style={{ display: props.showReplyForm ? 'grid' : 'none' }}>
+                                                <input type="text" name="full_name" value={props.repliedCommentFullName} onChange={props.setRepliedCommentFullName} />
+                                                <textarea name="" id="" cols="30" rows="10" value={props.repliedCommentMessage} onChange={props.setRepliedCommentMessage}></textarea>
+                                                <Button variant="dark" className={classes.Btn} onClick={event => props.onSubmitCommentReply(event, comment.id)}>submit</Button>
+                                            </form>
+                                        </div>
                                     })}
-                                </div>
-                                <form>
-                                    <input type="text" name="full_name" value={props.userFullName} onChange={props.setUserFullName} />
-                                    <textarea name="" id="" cols="30" rows="10" value={props.comment} onChange={props.setComment}></textarea>
-                                    <input type="button" value="submit" onClick={props.onSubmitComment} />
+                                </div> : null}
+                                <form className={`d-grid ${classes.Comment}`}>
+                                    <h3>write a comment</h3>
+                                    <input type="text" name="full_name" value={props.userFullName} onChange={props.setUserFullName} placeholder="Full Name" />
+                                    <textarea name="" id="" cols="30" rows="5" value={props.comment} onChange={props.setComment} placeholder="Comment"></textarea>
+                                    <input type="button" value="submit" onClick={props.onSubmitComment} className={`btn btn-dark ${classes.Btn}`} />
                                 </form>
                             </Col>
                             <Col>

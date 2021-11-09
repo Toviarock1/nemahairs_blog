@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import CenteredError from '../../components/CenteredError/CenteredError'
 import CenteredSpinner from '../../components/CenteredSpinner/CenteredSpinner'
+import { fetchAllComments } from '../../store/comments'
 import { fetchAdvert, fetchAllCategories, fetchPost } from '../../store/singlePost'
 import Post from '../../views/Post/Post'
 
@@ -11,20 +12,26 @@ import Post from '../../views/Post/Post'
 const SinglePost = () => {
     //variables
     let content = <CenteredSpinner />;
-    let newTime;
+    let getDate;
+    let month = [];
+    let splitgetDate;
+    let newDate;
+    let allComments = [];
+    let allReplies = []
     //state
     //data to post to the backend
     const [fullName, setFullName] = useState('');
     const [comment, setComment] = useState('');
-    //date gotton from the backend
-    const [commentDetails, setCommentDetails] = useState('');
-    let allComments = [];
+    const [repliedCommentMessage, setRepliedCommentMessage] = useState('');
+    const [repliedCommentFullName, setRepliedCommentFullName] = useState('');
+    const [toggleReplyForm, setToggleReplyForm] = useState(false);
     //redux
     const post = useSelector(state => state.post.post);
     const loading = useSelector(state => state.post.loading);
     const advert = useSelector(state => state.post.advert);
     const error = useSelector(state => state.post.error);
     const allCategories = useSelector(state => state.post.categories);
+    const commentDetails = useSelector(state => state.comments.comments)
     const dispatch = useDispatch();
     //params
     const { slug } = useParams();
@@ -33,23 +40,11 @@ const SinglePost = () => {
         dispatch(fetchAdvert());
         dispatch(fetchPost(slug));
         dispatch(fetchAllCategories());
-       
+        dispatch(fetchAllComments(slug));
+
     }, [slug, dispatch]);
 
-    // axios.get(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}.json`)
-    // .then(res => {
-    //     setCommentDetails(res.data);
-    // }).catch(err => console.log(err))
-
-    useEffect(() => {
-        axios.get(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}.json`)
-    .then(res => {
-        setCommentDetails(res.data);
-    }).catch(err => console.log(err))
-
-    }, [])
-
-    console.log(commentDetails)
+    // console.log(commentDetails)
 
     //read post aloud
     const textToVoiceHandler = () => {
@@ -67,13 +62,33 @@ const SinglePost = () => {
 
     const submitCommentHandler = () => {
         console.log('start')
-        axios.post(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}.json`, {"fullName": fullName,"comment":comment})
-        .then(res => console.log(res)).catch(err => console.log(err))
+        axios.post(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}.json`, { "fullName": fullName, "comment": comment, reply: '' })
+            .then(res => {
+                dispatch(fetchAllComments(slug));
+            }).catch(err => console.log(err))
+        
     };
 
-    if(commentDetails) {
-        for(let key in commentDetails) {
-            allComments.push(commentDetails[key])
+    const submitCommentReplyHandler = (event, id) => {
+        console.log('start')
+        axios.post(`https://nemahairs-comments-default-rtdb.firebaseio.com/${slug}/${id}/reply.json`, { "fullName": repliedCommentFullName, "comment": repliedCommentMessage, "id" : id })
+            .then(res => {
+                dispatch(fetchAllComments(slug));
+                // console.log("worked")
+            }).catch(err => console.log(err))
+        
+    };
+
+    const showReplyBtnHandler = () => {
+        setToggleReplyForm(!toggleReplyForm);
+    }
+    
+    if (commentDetails) {
+        for (let key in commentDetails) {
+            for(let relpies in commentDetails[key].reply) {
+                allReplies.push({...commentDetails[key].reply[relpies]})
+            }
+            allComments.push({...commentDetails[key], id: key, reply : allReplies.filter(reply => reply.id === key)})
         }
     }
 
@@ -83,7 +98,27 @@ const SinglePost = () => {
         if (!error) {
 
             if (post.publishedAt) {
-                newTime = post.publishedAt.split(/[a-z]/i)[0];
+                //get date into array with two parts and take only the first which contains the date
+                getDate = post.publishedAt.split(/[a-z]/i)[0];
+                //slpit the date into 3 arrays that has the month, day, year
+                splitgetDate = getDate.split(/\W/);
+                //check the month to replace the month number with the month name
+                month[0] = "January";
+                month[1] = "January";
+                month[2] = "February";
+                month[3] = "March";
+                month[4] = "April";
+                month[5] = "May";
+                month[6] = "June";
+                month[7] = "July";
+                month[8] = "August";
+                month[9] = "September";
+                month[10] = "October";
+                month[11] = "November";
+                month[12] = "December";
+                //arrange the date like this 03 november 2021 and pass it to publishedAt props
+                newDate = `${splitgetDate[2]} ${month[splitgetDate[1]]} ${splitgetDate[0]}`;
+
             }
             content = (
                 <Post
@@ -94,7 +129,7 @@ const SinglePost = () => {
                     advertImg={advert.image && advert.image.asset && advert.image.asset.url}
                     advertAlt={advert.title}
                     link={advert.link}
-                    publishedAt={newTime}
+                    publishedAt={newDate}
                     stop={stopTextToVoiceHandler}
                     start={textToVoiceHandler}
                     pause={pauseTextToVoiceHandler}
@@ -106,6 +141,14 @@ const SinglePost = () => {
                     setComment={e => setComment(e.target.value)}
                     onSubmitComment={submitCommentHandler}
                     commentDetails={allComments}
+                    showReplyForm={toggleReplyForm}
+                    replyBtn={showReplyBtnHandler}
+                    onSubmitCommentReply={submitCommentReplyHandler}
+                    repliedCommentFullName={repliedCommentFullName}
+                    setRepliedCommentFullName={e => setRepliedCommentFullName(e.target.value)}
+                    repliedCommentMessage={repliedCommentMessage}
+                    setRepliedCommentMessage={e => setRepliedCommentMessage(e.target.value)}
+
                 />
             );
         } else {

@@ -8,6 +8,7 @@ const CategoriesCard = (props) => {
             {
                 props.categories.map((category) => {
                     return <Categories
+                    key={category.title}
                     category={category.title}
                     categoryLength={category.posts.length}
                     />

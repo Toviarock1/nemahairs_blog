@@ -6,7 +6,6 @@ export const fetchAllPost = createAsyncThunk("posts/fetchAllPost", async () => {
     `*[_type == "post"] {
         title,
         slug,
-        body,
         "tag": *[_type=='category']{ title },
         author -> {
             name
@@ -28,7 +27,6 @@ export const fetchAllSearchedPost = createAsyncThunk("posts/fetchAllSearchedPost
     `*[title match "${slug}"] {
         title,
         slug,
-        body,
         "tag": *[_type=='category']{ title },
         author -> {
             name

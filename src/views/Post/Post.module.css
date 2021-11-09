@@ -33,3 +33,32 @@
 .Voice button {
   margin-right: 10px;
 }
+.Comment {
+  border-top: 1px solid #e8e8e8;
+  margin-top: 60px;
+  padding-top: 40px;
+  transition: 0.3s linear;
+}
+.Comment input,
+.Comment textarea {
+  margin-bottom: 15px;
+}
+.Comment h3 {
+  margin: 27px 0;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+.Btn {
+  width: 15%;
+  margin: auto;
+}
+.CommentAvater{
+  width: 29px !important;
+}
+.CommentContent {
+  margin: 10px;
+  margin-bottom: 25px;
+}

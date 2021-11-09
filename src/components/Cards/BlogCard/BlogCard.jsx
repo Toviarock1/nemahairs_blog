@@ -9,7 +9,7 @@ const BlogCard = (props) => {
                 <div className={classes.Card} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)),rgba(0, 0, 0, var(--bg-filter-opacity))),url(${props.img})` }}>
                     <div className={classes.Content}>
                         <div className={classes.Tags}>
-                            <a className={classes.Tag} href="https://codetheweb.blog/2017/10/06/html-syntax/">{props.tag}</a>
+                            {/* <a className={classes.Tag} href="https://codetheweb.blog/2017/10/06/html-syntax/">{props.tag}</a> */}
                         </div>
                         <div className={classes.ContentWrapper}>
                             <a href="/" className={classes.Author}>{`By ${props.author}`}</a>
