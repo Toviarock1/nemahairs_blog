@@ -36,15 +36,15 @@ const Post = (props) => {
                                 <div className={`speak ${classes.TextContent}`}>
                                     <BlockContent blocks={props.content} projectId="7k0zkofm" dataset="production" />
                                 </div>
-                                {props.commentDetails ? <div>
+                                {props.commentDetails ? <div className={classes.CommentWrapper}>
                                     {props.commentDetails.map((comment, commentIndex) => {
                                         return <div key={comment.id}>
                                             <div className={classes.CommentContent}>
                                                 <div className="d-flex">
                                                     <Image src={Avater} roundedCircle className={classes.CommentAvater} />
-                                                    <p>{comment.fullName}</p>
+                                                    <p className={classes.CommentName}>{comment.fullName}</p>
                                                 </div>
-                                                <p className="ps-4">{comment.comment}</p>
+                                                <p className={classes.CommentMessage}>{comment.comment}</p>
                                                 <Button key={commentIndex} className={`replyBtn${commentIndex}`} variant="dark" onClick={() => props.replyBtn(commentIndex)}>Reply</Button>
                                                 {comment.reply !== '' &&
                                                     <div>
@@ -54,9 +54,9 @@ const Post = (props) => {
                                                                     <>
                                                                         <div className="d-flex" key={index}>
                                                                             <Image src={Avater} roundedCircle className={classes.CommentAvater} />
-                                                                            <p>{reply.fullName}</p>
+                                                                            <p className={classes.CommentName}>{reply.fullName}</p>
                                                                         </div>
-                                                                        <p className="ps-4">{reply.comment}</p>
+                                                                        <p className={classes.CommentMessage}>{reply.comment}</p>
                                                                     </>
                                                                 )
                                                             })
@@ -80,7 +80,11 @@ const Post = (props) => {
                                 </form>
                             </Col>
                             <Col>
-                                <AboutMeCard />
+                                <AboutMeCard
+                                    aboutMeImg={props.aboutMeImg}
+                                    aboutMeName={props.aboutMeName}
+                                    aboutMeDescription={props.aboutMeDescription}
+                                />
                                 <FollowUsCard />
                                 <AdvertisementCard link={props.link} img={props.advertImg} alt={props.advertAlt} />
                                 <CategoriesCard categories={props.categories} />

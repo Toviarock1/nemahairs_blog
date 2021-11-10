@@ -38,6 +38,19 @@ export default {
         },
       ],
     },
+    {
+      name: 'about_me_post_card',
+      title: 'About Me Post Card',
+      type: 'array',
+      of: [
+        {
+          title: 'Block',
+          type: 'block',
+          styles: [{title: 'Normal', value: 'normal'}],
+          lists: [],
+        },
+      ],
+    },
   ],
   preview: {
     select: {

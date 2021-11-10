@@ -5,7 +5,7 @@ import { useParams } from 'react-router'
 import CenteredError from '../../components/CenteredError/CenteredError'
 import CenteredSpinner from '../../components/CenteredSpinner/CenteredSpinner'
 import { fetchAllComments } from '../../store/comments'
-import { fetchAdvert, fetchAllCategories, fetchPost } from '../../store/singlePost'
+import { fetchAdvert, fetchAllCategories, fetchAuthor, fetchPost } from '../../store/singlePost'
 import Post from '../../views/Post/Post'
 
 
@@ -24,7 +24,6 @@ const SinglePost = () => {
     const [comment, setComment] = useState('');
     const [repliedCommentMessage, setRepliedCommentMessage] = useState('');
     const [repliedCommentFullName, setRepliedCommentFullName] = useState('');
-    // const [toggleReplyForm, setToggleReplyForm] = useState(false);
     //redux
     const post = useSelector(state => state.post.post);
     const loading = useSelector(state => state.post.loading);
@@ -32,6 +31,7 @@ const SinglePost = () => {
     const error = useSelector(state => state.post.error);
     const allCategories = useSelector(state => state.post.categories);
     const commentDetails = useSelector(state => state.comments.comments)
+    const author = useSelector(state => state.post.author)
     const dispatch = useDispatch();
     //params
     const { slug } = useParams();
@@ -41,6 +41,7 @@ const SinglePost = () => {
         dispatch(fetchPost(slug));
         dispatch(fetchAllCategories());
         dispatch(fetchAllComments(slug));
+        dispatch(fetchAuthor())
 
     }, [slug, dispatch]);
 
@@ -157,6 +158,9 @@ const SinglePost = () => {
                     setRepliedCommentFullName={e => setRepliedCommentFullName(e.target.value)}
                     repliedCommentMessage={repliedCommentMessage}
                     setRepliedCommentMessage={e => setRepliedCommentMessage(e.target.value)}
+                    aboutMeImg={author.image && author.image.asset && author.image.asset.url}
+                    aboutMeName={author.name}
+                    aboutMeDescription={author.about_me_post_card}
 
                 />
             );

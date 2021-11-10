@@ -55,10 +55,26 @@
   width: 15%;
   margin: auto;
 }
-.CommentAvater{
+.CommentAvater {
   width: 29px !important;
 }
 .CommentContent {
   margin: 10px;
   margin-bottom: 25px;
+  border: 1px solid #e8e8e8;
+  padding: 10px 17px;
+}
+.CommentContent button {
+  margin-bottom: 11px;
+  margin-top: 8px;
+}
+.CommentWrapper {
+  margin-top: 105px;
+}
+.CommentName {
+  margin-top: 4px;
+  margin-left: 4px;
+}
+.CommentMessage {
+  margin-left: 33px;
 }

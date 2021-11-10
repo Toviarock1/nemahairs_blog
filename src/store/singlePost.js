@@ -58,6 +58,22 @@ export const fetchAllCategories = createAsyncThunk("posts/fetchAllCategories", a
   return response;
 });
 
+export const fetchAuthor = createAsyncThunk('author/fetchAuthor', async () => {
+  const response = await client.fetch(
+    `*[_type == "author"]{
+      name,
+        about_me_post_card,
+        image {
+        asset -> {
+        url
+      },
+      alt
+      }
+      }`
+  );
+  return response[0];
+})
+
 
 const singlePostSlice = createSlice({
   name: "singlePost",
@@ -66,7 +82,8 @@ const singlePostSlice = createSlice({
     loading: true,
     post: [],
     error: false,
-    categories: []
+    categories: [],
+    author: []
   },
   reducers: {
     toggleLoading: (state) => {
@@ -101,6 +118,9 @@ const singlePostSlice = createSlice({
       state.loading = false;
       state.categories = action.payload;
     },
+    [fetchAuthor.fulfilled]: (state, action) => {
+      state.author = action.payload;
+    }
   },
 });
 
