@@ -2,7 +2,6 @@ import React from 'react'
 import { Col, Container, Row, Button, Image } from 'react-bootstrap';
 import AboutMeCard from '../../components/Cards/AboutMeCard/AboutMeCard';
 import AdvertisementCard from '../../components/Cards/AdvertisementCard/AdvertisementCard';
-import ArchiveCard from '../../components/Cards/ArchiveCard/ArchiveCard';
 import CategoriesCard from '../../components/Cards/CategoriesCard/CategoriesCard';
 import FollowUsCard from '../../components/Cards/FollowUsCard/FollowUsCard';
 import Newsletter from '../../components/Cards/Newsletter/Newsletter';

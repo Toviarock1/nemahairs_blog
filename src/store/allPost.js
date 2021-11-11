@@ -50,6 +50,7 @@ const allPostSlice = createSlice({
     allPost: [],
     loading: true,
     searchedPost: [],
+    searchedPostError: false,
     allPostError: false
   },
   extraReducers: {
@@ -68,6 +69,10 @@ const allPostSlice = createSlice({
       state.loading = false;
       state.searchedPost = action.payload;
     },
+    [fetchAllSearchedPost.rejected]: (state, action) => {
+      state.loading = false;
+      state.searchedPostError = true;
+    }
     
   },
 });

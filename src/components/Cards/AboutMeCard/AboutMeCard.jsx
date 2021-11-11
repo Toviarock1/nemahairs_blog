@@ -1,6 +1,5 @@
 import React from 'react'
 import BlockContent from '@sanity/block-content-to-react';
-import image from './../../../assets/images/Announcement-creatives-3_Article-header.png';
 
 const AboutMeCard = (props) => {
     return (
