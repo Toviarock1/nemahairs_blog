@@ -17,7 +17,7 @@ const Post = (props) => {
                 <article>
                     <Container className={classes.Container}>
                         <Row>
-                            <Col xs={9}>
+                            <Col xs={12} lg={9}>
                                 <div className={classes.TitleWrapper}>
                                     <h2>{props.title}</h2>
                                     <div>
