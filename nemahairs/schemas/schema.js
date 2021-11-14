@@ -11,6 +11,8 @@ import post from './post'
 import author from './author'
 import advertisement from './advertisement'
 import popularPost from './popularPost'
+import socialHandles from './socialHandles'
+import about from './about'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -22,9 +24,11 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     post,
+    about,
     author,
     category,
     advertisement,
+    socialHandles,
     popularPost,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
