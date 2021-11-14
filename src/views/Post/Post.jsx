@@ -75,7 +75,9 @@ const Post = (props) => {
                                     <h3>write a comment</h3>
                                     <input type="text" name="full_name" value={props.userFullName} onChange={props.setUserFullName} placeholder="Full Name" />
                                     <textarea name="" id="" cols="30" rows="5" value={props.comment} onChange={props.setComment} placeholder="Comment"></textarea>
-                                    <Button variant="dark" disabled={props.disableBtn} className={classes.Btn} onClick={props.onSubmitComment}>{props.disableBtn ? <Spinner animation="border" variant="secondary" /> : "Submit"}</Button>
+                                    <div className={classes.Btn}>
+                                        <Button variant="dark" disabled={props.disableBtn} onClick={props.onSubmitComment}>{props.disableBtn ? <Spinner animation="border" variant="secondary" /> : "Submit"}</Button>
+                                    </div>
                                     {/* <input type="button" value="submit" onClick={props.onSubmitComment} className={`btn btn-dark ${classes.Btn}`} /> */}
                                 </form>
                             </Col>
