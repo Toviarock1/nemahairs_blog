@@ -5,7 +5,6 @@ import AdvertisementCard from '../../components/Cards/AdvertisementCard/Advertis
 import CategoriesCard from '../../components/Cards/CategoriesCard/CategoriesCard';
 import FollowUsCard from '../../components/Cards/FollowUsCard/FollowUsCard';
 import Newsletter from '../../components/Cards/Newsletter/Newsletter';
-import PopularPostCard from '../../components/Cards/PopularPostCard/PopularPostCard';
 import BlockContent from '@sanity/block-content-to-react';
 import Avater from './../../assets/images/avater.png';
 import classes from './Post.module.css';
