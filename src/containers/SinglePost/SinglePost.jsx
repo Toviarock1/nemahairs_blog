@@ -16,11 +16,13 @@ const SinglePost = () => {
     let allComments = [];
     let allReplies = []
     //state
-    //data to post to the backend
+        //data to post to the backend
     const [fullName, setFullName] = useState('');
     const [comment, setComment] = useState('');
     const [repliedCommentMessage, setRepliedCommentMessage] = useState('');
     const [repliedCommentFullName, setRepliedCommentFullName] = useState('');
+        //disable send comment btn
+    const [sendComment, setSendComment] = useState(false);
     //redux
     const post = useSelector(state => state.post.post);
     const loading = useSelector(state => state.post.loading);
@@ -59,15 +61,22 @@ const SinglePost = () => {
     }
 
     const submitCommentHandler = () => {
+        setSendComment(true);
         console.log('start')
         axios.post(`/${slug}.json`, { "fullName": fullName, "comment": comment, reply: '' })
             .then(res => {
                 dispatch(fetchAllComments(slug));
-            }).catch(err => console.log(err))
+                setComment('');
+                setFullName('');
+                setSendComment(false);
+            }).catch(err => {
+                setSendComment(false);
+                console.log(err)
+            })
 
     };
 
-    const submitCommentReplyHandler = (event, id) => {
+    const submitCommentReplyHandler = (id) => {
         console.log('start')
         axios.post(`/${slug}/${id}/reply.json`, { "fullName": repliedCommentFullName, "comment": repliedCommentMessage, "id": id })
             .then(res => {
@@ -134,6 +143,7 @@ const SinglePost = () => {
                     aboutMeImg={author.image && author.image.asset && author.image.asset.url}
                     aboutMeName={author.name}
                     aboutMeDescription={author.about_me_post_card}
+                    disableBtn={sendComment}
 
                 />
             );

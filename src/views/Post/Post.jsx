@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Container, Row, Button, Image } from 'react-bootstrap';
+import { Col, Container, Row, Button, Image, Spinner } from 'react-bootstrap';
 import AboutMeCard from '../../components/Cards/AboutMeCard/AboutMeCard';
 import AdvertisementCard from '../../components/Cards/AdvertisementCard/AdvertisementCard';
 import CategoriesCard from '../../components/Cards/CategoriesCard/CategoriesCard';
@@ -65,8 +65,8 @@ const Post = (props) => {
                                             </div>
                                             <form className={`${classes.Comment}`} style={{ display: 'none' }} id={`commentReplyForm${commentIndex}`}>
                                                 <input type="text" name="full_name" value={props.repliedCommentFullName} onChange={props.setRepliedCommentFullName} />
-                                                <textarea name="" id="" cols="30" rows="10" value={props.repliedCommentMessage} onChange={props.setRepliedCommentMessage}></textarea>
-                                                <Button variant="dark" className={classes.Btn} onClick={event => props.onSubmitCommentReply(event, comment.id)}>submit</Button>
+                                                <textarea name="" id="" cols="30" rows="3" value={props.repliedCommentMessage} onChange={props.setRepliedCommentMessage}></textarea>
+                                                <Button variant="dark" className={classes.Btn} onClick={() => props.onSubmitCommentReply(comment.id)}>submit</Button>
                                             </form>
                                         </div>
                                     })}
@@ -75,7 +75,8 @@ const Post = (props) => {
                                     <h3>write a comment</h3>
                                     <input type="text" name="full_name" value={props.userFullName} onChange={props.setUserFullName} placeholder="Full Name" />
                                     <textarea name="" id="" cols="30" rows="5" value={props.comment} onChange={props.setComment} placeholder="Comment"></textarea>
-                                    <input type="button" value="submit" onClick={props.onSubmitComment} className={`btn btn-dark ${classes.Btn}`} />
+                                    <Button variant="dark" disabled={props.disableBtn} className={classes.Btn} onClick={props.onSubmitComment}>{props.disableBtn ? <Spinner animation="border" variant="secondary" /> : "Submit"}</Button>
+                                    {/* <input type="button" value="submit" onClick={props.onSubmitComment} className={`btn btn-dark ${classes.Btn}`} /> */}
                                 </form>
                             </Col>
                             <Col>
@@ -87,7 +88,8 @@ const Post = (props) => {
                                 <FollowUsCard />
                                 <AdvertisementCard link={props.link} img={props.advertImg} alt={props.advertAlt} />
                                 <CategoriesCard categories={props.categories} />
-                                <PopularPostCard />
+                                {/* work on the popular post later */}
+                                {/* <PopularPostCard /> */}
                                 <Newsletter change={props.change} submit={props.submit} value={props.value} />
                             </Col>
                         </Row>
