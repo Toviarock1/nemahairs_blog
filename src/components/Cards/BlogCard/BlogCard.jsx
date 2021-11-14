@@ -6,22 +6,22 @@ const BlogCard = (props) => {
     return (
         <>
             <div className={classes.CardSGridSpace}>
-                <div className={classes.Card} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)),rgba(0, 0, 0, var(--bg-filter-opacity))),url(${props.img})` }}>
-                    <div className={classes.Content}>
-                        <div className={classes.Tags}>
-                            {/* <a className={classes.Tag} href="https://codetheweb.blog/2017/10/06/html-syntax/">{props.tag}</a> */}
-                        </div>
-                        <div className={classes.ContentWrapper}>
-                            <a href="/" className={classes.Author}>{`By ${props.author}`}</a>
-                            <h2>
-                                <Link to={`/post/${props.slug}`} >
+                <Link to={`/post/${props.slug}`} >
+                    <div className={classes.Card} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)),rgba(0, 0, 0, var(--bg-filter-opacity))),url(${props.img})` }}>
+                        <div className={classes.Content}>
+                            <div className={classes.Tags}>
+                                <a className={classes.Tag} href="https://codetheweb.blog/2017/10/06/html-syntax/">{props.date}</a>
+                            </div>
+                            <div className={classes.ContentWrapper}>
+                                <a href="/" className={classes.Author}>{`By ${props.author}`}</a>
+                                <h2>
                                     {props.title}
-                                </Link>
-                            </h2>
-                        </div>
+                                </h2>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
+                </Link>
             </div>
         </>
     )

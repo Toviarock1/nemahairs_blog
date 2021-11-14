@@ -5,6 +5,7 @@ export const fetchAllPost = createAsyncThunk("posts/fetchAllPost", async () => {
   const response = await client.fetch(
     `*[_type == "post"] {
         title,
+        publishedAt,
         slug,
         "tag": *[_type=='category']{ title },
         author -> {

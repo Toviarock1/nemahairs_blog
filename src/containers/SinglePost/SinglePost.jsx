@@ -7,15 +7,12 @@ import CenteredSpinner from '../../components/CenteredSpinner/CenteredSpinner'
 import { fetchAllComments } from '../../store/comments'
 import { fetchAdvert, fetchAllCategories, fetchAuthor, fetchPost } from '../../store/singlePost'
 import Post from '../../views/Post/Post'
+import { getPostedDate } from '../../shared/utility'
 
 
 const SinglePost = () => {
     //variables
     let content = <CenteredSpinner />;
-    let getDate;
-    let month = [];
-    let splitgetDate;
-    let newDate;
     let allComments = [];
     let allReplies = []
     //state
@@ -107,30 +104,6 @@ const SinglePost = () => {
 
     if (!loading) {
         if (!error) {
-
-            if (post.publishedAt) {
-                //get date into array with two parts and take only the first which contains the date
-                getDate = post.publishedAt.split(/[a-z]/i)[0];
-                //slpit the date into 3 arrays that has the month, day, year
-                splitgetDate = getDate.split(/\W/);
-                //check the month to replace the month number with the month name
-                month[0] = "January";
-                month[1] = "January";
-                month[2] = "February";
-                month[3] = "March";
-                month[4] = "April";
-                month[5] = "May";
-                month[6] = "June";
-                month[7] = "July";
-                month[8] = "August";
-                month[9] = "September";
-                month[10] = "October";
-                month[11] = "November";
-                month[12] = "December";
-                //arrange the date like this 03 november 2021 and pass it to publishedAt props
-                newDate = `${splitgetDate[2]} ${month[splitgetDate[1]]} ${splitgetDate[0]}`;
-
-            }
             content = (
                 <Post
                     loading={loading}
@@ -140,7 +113,7 @@ const SinglePost = () => {
                     advertImg={advert.image && advert.image.asset && advert.image.asset.url}
                     advertAlt={advert.title}
                     link={advert.link}
-                    publishedAt={newDate}
+                    publishedAt={getPostedDate(post.publishedAt)}
                     stop={stopTextToVoiceHandler}
                     start={textToVoiceHandler}
                     pause={pauseTextToVoiceHandler}
