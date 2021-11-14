@@ -7,7 +7,7 @@ const Categories = (props) => {
         <a href="/">
            {props.category}
         </a>
-        <span>{props.categoryLength}</span>
+        <div>{props.categoryLength}</div>
         </div>
     )
 }

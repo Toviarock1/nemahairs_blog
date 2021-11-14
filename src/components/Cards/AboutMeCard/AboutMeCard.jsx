@@ -8,7 +8,7 @@ const AboutMeCard = (props) => {
                 <h3>About Me</h3>
             </div>
             <div>
-                <img src={props.aboutMeImg} alt="faith ojone adama" />
+                <img style={{width: "167px"}} src={props.aboutMeImg} alt="faith ojone adama" />
             </div>
             <p className="Author">{props.aboutMeName}</p>
             <div className="Description">

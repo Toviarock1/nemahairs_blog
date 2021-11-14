@@ -1,5 +1,7 @@
 .Categories {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 .Categories span {
   margin-left: 77%;
