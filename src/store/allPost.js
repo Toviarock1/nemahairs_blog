@@ -3,7 +3,7 @@ import client from "../client";
 
 export const fetchAllPost = createAsyncThunk("posts/fetchAllPost", async () => {
   const response = await client.fetch(
-    `*[_type == "post"] {
+    `*[_type == "post"] | order(publishedAt desc) {
         title,
         publishedAt,
         slug,
