@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchAllPost } from "../../store/allPost";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "../../hoc/Layout/Layout";
 import Home from "./../Home/Home";
 import "./App.css";
 import SinglePost from "./../SinglePost/SinglePost";
 import Search from "./../Search/Search";
-import { useDispatch } from "react-redux";
-import { fetchAllPost } from "../../store/allPost";
+import About from "../About/About";
 
 function App() {
   const [searchText, setSearchText] = useState("");
@@ -31,6 +32,9 @@ function App() {
         </Route>
         <Route path="/search/:slug" exact>
           <Search />
+        </Route>
+        <Route path="/about" >
+          <About />
         </Route>
         <Route>
           <Redirect to="/" />

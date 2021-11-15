@@ -63,6 +63,7 @@ export const fetchAuthor = createAsyncThunk('author/fetchAuthor', async () => {
     `*[_type == "author"]{
       name,
         about_me_post_card,
+        bio,
         image {
         asset -> {
         url
