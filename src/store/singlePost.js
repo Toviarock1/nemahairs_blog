@@ -43,9 +43,11 @@ export const fetchPost = createAsyncThunk("post/fetchPost", async (slug) => {
   return response[0];
 });
 
-export const fetchAllCategories = createAsyncThunk("posts/fetchAllCategories", async () => {
-  const response = await client.fetch(
-    `*[_type == "category"]{
+export const fetchAllCategories = createAsyncThunk(
+  "post/fetchAllCategories",
+  async () => {
+    const response = await client.fetch(
+      `*[_type == "category"]{
       _id,
       _type,
       title,
@@ -54,11 +56,12 @@ export const fetchAllCategories = createAsyncThunk("posts/fetchAllCategories", a
         slug
       }
     }`
-  );
-  return response;
-});
+    );
+    return response;
+  }
+);
 
-export const fetchAuthor = createAsyncThunk('author/fetchAuthor', async () => {
+export const fetchAuthor = createAsyncThunk("author/fetchAuthor", async () => {
   const response = await client.fetch(
     `*[_type == "author"]{
       name,
@@ -73,8 +76,28 @@ export const fetchAuthor = createAsyncThunk('author/fetchAuthor', async () => {
       }`
   );
   return response[0];
-})
+});
 
+export const fetchPopularPost = createAsyncThunk(
+  "posts/fetchPopularPost",
+  async () => {
+    const response = client.fetch(`
+    *[_type == "popular-post"] {
+      posts[] -> {
+        title,
+        slug,
+        publishedAt,
+        mainImage {
+        asset -> {
+        url
+      }
+      }
+      }
+    }[0]
+  `);
+  return response;
+  }
+);
 
 const singlePostSlice = createSlice({
   name: "singlePost",
@@ -84,7 +107,8 @@ const singlePostSlice = createSlice({
     post: [],
     error: false,
     categories: [],
-    author: []
+    author: [],
+    popularPost: []
   },
   reducers: {
     toggleLoading: (state) => {
@@ -121,7 +145,18 @@ const singlePostSlice = createSlice({
     },
     [fetchAuthor.fulfilled]: (state, action) => {
       state.author = action.payload;
-    }
+    },
+    [fetchPopularPost.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [fetchPopularPost.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.popularPost = [...action.payload.posts];
+      console.trace(action.payload)
+    },
+    [fetchPopularPost.rejected]: (state, action) => {
+      state.error = true;
+    },
   },
 });
 

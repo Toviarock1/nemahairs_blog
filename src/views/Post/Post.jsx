@@ -3,6 +3,7 @@ import { Col, Container, Row, Button, Image, Spinner } from 'react-bootstrap';
 import AboutMeCard from '../../components/Cards/AboutMeCard/AboutMeCard';
 import AdvertisementCard from '../../components/Cards/AdvertisementCard/AdvertisementCard';
 import CategoriesCard from '../../components/Cards/CategoriesCard/CategoriesCard';
+import PopularPostCard from '../../components/Cards/PopularPostCard/PopularPostCard';
 import FollowUsCard from '../../components/Cards/FollowUsCard/FollowUsCard';
 import Newsletter from '../../components/Cards/Newsletter/Newsletter';
 import BlockContent from '@sanity/block-content-to-react';
@@ -89,8 +90,7 @@ const Post = (props) => {
                                 <FollowUsCard />
                                 <AdvertisementCard link={props.link} img={props.advertImg} alt={props.advertAlt} />
                                 <CategoriesCard categories={props.categories} />
-                                {/* work on the popular post later */}
-                                {/* <PopularPostCard /> */}
+                                <PopularPostCard popularPost={props.popularPost} />
                                 <Newsletter change={props.change} submit={props.submit} value={props.value} />
                             </Col>
                         </Row>

@@ -1,15 +1,15 @@
 import React from 'react'
-import image from './../../../../assets/images/elements-bg.jpg';
+import { Link } from 'react-router-dom';
 import classes from './PopularPost.module.css';
-const PopularPost = () => {
+const PopularPost = (props) => {
     return (
         <div className={classes.PopularPost}>
             <div>
-                <img src={image} alt=""  />
+                <img src={props.img} alt={props.title}  />
             </div>
             <div>
-                <a href="/">My inspiration for interior design is more…</a>
-                <span>March 8, 2019</span>
+                <Link to={`/post/${props.slug}`}>{props.title}</Link>
+                <span>{props.date}</span>
             </div>
         </div>
     )

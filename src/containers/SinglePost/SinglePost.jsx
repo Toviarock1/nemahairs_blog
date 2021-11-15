@@ -5,7 +5,7 @@ import { useParams } from 'react-router'
 import CenteredError from '../../components/CenteredError/CenteredError'
 import CenteredSpinner from '../../components/CenteredSpinner/CenteredSpinner'
 import { fetchAllComments } from '../../store/comments'
-import { fetchAdvert, fetchAllCategories, fetchAuthor, fetchPost } from '../../store/singlePost'
+import { fetchAdvert, fetchAllCategories, fetchAuthor, fetchPopularPost, fetchPost } from '../../store/singlePost'
 import Post from '../../views/Post/Post'
 import { getPostedDate } from '../../shared/utility'
 
@@ -30,7 +30,8 @@ const SinglePost = () => {
     const error = useSelector(state => state.post.error);
     const allCategories = useSelector(state => state.post.categories);
     const commentDetails = useSelector(state => state.comments.comments)
-    const author = useSelector(state => state.post.author)
+    const author = useSelector(state => state.post.author);
+    const popularPost = useSelector(state => state.post.popularPost);
     const dispatch = useDispatch();
     //params
     const { slug } = useParams();
@@ -41,6 +42,7 @@ const SinglePost = () => {
         dispatch(fetchAllCategories());
         dispatch(fetchAllComments(slug));
         dispatch(fetchAuthor())
+        dispatch(fetchPopularPost())
 
     }, [slug, dispatch]);
 
@@ -144,7 +146,7 @@ const SinglePost = () => {
                     aboutMeName={author.name}
                     aboutMeDescription={author.about_me_post_card}
                     disableBtn={sendComment}
-
+                    popularPost={popularPost}
                 />
             );
         } else {
