@@ -29,3 +29,9 @@
   display: block;
   max-width: 100%;
 }
+
+@media screen and (max-width: 932px) {
+  .AboutBlog p {
+    width: 100%;
+  }
+}
