@@ -9,6 +9,7 @@ import "./App.css";
 import SinglePost from "./../SinglePost/SinglePost";
 import Search from "./../Search/Search";
 import About from "../About/About";
+import Advertise from "../../views/Advertise/Advertise";
 
 function App() {
   const [searchText, setSearchText] = useState("");
@@ -35,6 +36,9 @@ function App() {
         </Route>
         <Route path="/about" >
           <About />
+        </Route>
+        <Route path="/advertise" >
+          <Advertise />
         </Route>
         <Route>
           <Redirect to="/" />
