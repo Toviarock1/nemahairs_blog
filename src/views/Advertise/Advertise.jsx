@@ -10,7 +10,7 @@ const Advertise = () => {
             <div className={classes.Bg}>
                 <Container>
                     <Row>
-                        <Col>
+                        <Col xs={12} lg={6}>
                             <div className={classes.SectionOne}>
                                 <p>Advertise</p>
                                 <h2>Increase visibility and sales on Nemahairs with advertising</h2>
@@ -18,7 +18,7 @@ const Advertise = () => {
                                 <Button>Start Advertising</Button>
                             </div>
                         </Col>
-                        <Col>
+                        <Col xs={12} lg={6}>
                             <img src={image} alt="" />
                         </Col>
                     </Row>
@@ -29,21 +29,21 @@ const Advertise = () => {
                     <h3>Achieve your business goals</h3>
                     <div>
                         <Row>
-                            <Col className={classes.SectionTwo__Col}>
+                            <Col className={classes.SectionTwo__Col} xs={12} lg={4}>
                                 <GiAcousticMegaphone className={classes.Icons} />
                                 <h4>Get discovered</h4>
                                 <p>
                                     Advertising provides a visibility boost to your brand and products. Ads appear in highly visible placements, within shopping results or on product detail pages.
                                 </p>
                             </Col>
-                            <Col className={classes.SectionTwo__Col}>
+                            <Col className={classes.SectionTwo__Col} xs={12} lg={4}>
                                 <AiOutlineLineChart className={classes.Icons} />
                                 <h4>Increase sales</h4>
                                 <p>
                                     Many shoppers come to Amazon ready to buy. Advertising can help you reach customers who are looking for products like yours.
                                 </p>
                             </Col>
-                            <Col className={classes.SectionTwo__Col}>
+                            <Col className={classes.SectionTwo__Col} xs={12} lg={4}>
                                 <div>
                                     <MdOutlineMonetizationOn className={classes.Icons} />
                                 </div>
@@ -62,31 +62,31 @@ const Advertise = () => {
                     <h3>Advertise now</h3>
                     <Form>
                         <Row>
-                            <Col>
+                            <Col xs={12} lg={6}>
                                 <label>First name</label>
                                 <Form.Control />
                             </Col>
-                            <Col>
+                            <Col xs={12} lg={6}>
                                 <label>Last name</label>
                                 <Form.Control />
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col xs={12} lg={6}>
                                 <label>Company name</label>
                                 <Form.Control />
                             </Col>
-                            <Col>
+                            <Col xs={12} lg={6}>
                                 <label>Company email</label>
                                 <Form.Control type="email" />
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col xs={12} lg={6}>
                                 <label>Phone number</label>
                                 <Form.Control />
                             </Col>
-                            <Col>
+                            <Col xs={12} lg={6}>
                                 <label>Country</label>
                                 <Form.Control />
                             </Col>
