@@ -34,8 +34,9 @@
   color: #232f3e;
   text-transform: none;
 }
-.SectionTwo h3 {
-  font-size: 48px !important;
+.SectionTwo h3,
+.SectionThree h3 {
+  font-size: 48px;
   line-height: 58px;
   font-family: AEmb, Helvetica, Arial, sans-serif;
   margin: 80px auto;
@@ -45,14 +46,14 @@
 }
 .SectionTwo h4 {
   padding-bottom: 8px;
-  font-size: 20px !important;
+  font-size: 20px;
   line-height: 30px;
   font-family: AEmb, Helvetica, Arial, sans-serif;
   font-weight: 900;
   color: #232f3e;
 }
 .SectionTwo p {
-  font-size: 16px !important;
+  font-size: 16px;
   line-height: 24px;
   font-family: AEmb, Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -64,4 +65,22 @@
 .Icons {
   font-size: 50px;
   color: #5197fd;
+}
+
+.SectionThree label {
+  font-size: 15px;
+  line-height: 30px;
+  font-family: AEmb, Helvetica, Arial, sans-serif;
+  color: #232f3e;
+  padding: 8px 1px;
+}
+.SectionThree button {
+  margin-top: 20px;
+  text-align: center;
+}
+.SectionThree input {
+  font-size: 15px;
+  font-family: AEmb, Helvetica, Arial, sans-serif;
+  color: #232f3e;
+  padding: 8px 8px;
 }

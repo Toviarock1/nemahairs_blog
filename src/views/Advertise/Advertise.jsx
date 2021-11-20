@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Container, Row, Button } from 'react-bootstrap';
+import { Col, Container, Row, Button, Form } from 'react-bootstrap';
 import { GiAcousticMegaphone, AiOutlineLineChart, MdOutlineMonetizationOn } from 'react-icons/all'
 import image from './../../assets/svgs/Mobile Marketing-rafiki.svg';
 import classes from './Advertise.module.css';
@@ -57,9 +57,50 @@ const Advertise = () => {
 
                 </Container>
             </div>
-
+            <div className={classes.SectionThree}>
+                <Container>
+                    <h3>Advertise now</h3>
+                    <Form>
+                        <Row>
+                            <Col>
+                                <label>First name</label>
+                                <Form.Control />
+                            </Col>
+                            <Col>
+                                <label>Last name</label>
+                                <Form.Control />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <label>Company name</label>
+                                <Form.Control />
+                            </Col>
+                            <Col>
+                                <label>Company email</label>
+                                <Form.Control type="email" />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <label>Phone number</label>
+                                <Form.Control />
+                            </Col>
+                            <Col>
+                                <label>Country</label>
+                                <Form.Control />
+                            </Col>
+                        </Row>
+                        <label>Message</label>
+                        <Form.Control as="textarea" />
+                        <div className="text-center">
+                        <Button>Send</Button>
+                        </div>
+                    </Form>
+                </Container>
+            </div>
         </section>
     )
 }
 
-export default Advertise
+export default Advertise;
