@@ -10,9 +10,18 @@
   height: 65px;
   font-family: "Poppins", sans-serif;
 }
+.Link {
+  width: 70px;
+  text-align: left;
+}
+
+.Logo {
+  font-family: "Acta W01 Book", Georgia, serif;
+}
 
 @media screen and (max-width: 900px) {
   .Container {
     padding-bottom: 15px;
+    padding-top: 9px;
   }
 }
