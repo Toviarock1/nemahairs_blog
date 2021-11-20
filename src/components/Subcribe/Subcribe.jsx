@@ -9,7 +9,7 @@ const Subcribe = () => {
             <div className={classes.Bg}>
                 <Container>
                     <Row>
-                        <Col className="d-flex">
+                        <Col className="d-flex" lg={6} xs={12}>
                             <div className={classes.PWrapper}>
                                 <p>Last Chance To Win Our Discount!</p>
                             </div>
@@ -18,11 +18,11 @@ const Subcribe = () => {
                                 <Button className={classes.FormBtn}>subscribe</Button>
                             </div>
                         </Col>
-                        <Col className="d-flex">
-                            <div className={`${classes.PWrapper} ms-auto`}>
+                        <Col className="d-flex mt-3" lg={6} xs={12}>
+                            <div className={classes.PWrapper}>
                                 <p>Follow us on social media</p>
                             </div>
-                            <div className={classes.FormWrapper}>
+                            <div className={classes.IconWrapper}>
                                 <a href="/">
                                     <FaTwitterSquare className={classes.Icon} />
                                 </a>

@@ -4,9 +4,10 @@
   border-bottom-color: #808080;
   border-bottom-style: solid;
 }
-.FormWrapper {
+.FormWrapper, .IconWrapper {
   display: flex;
 }
+
 .FormInput {
   padding-right: 100px !important;
   font-family: "Poppins", sans-serif;
@@ -58,6 +59,7 @@
   color: #b7b7b7;
   text-transform: uppercase;
   padding-top: 7px;
+  margin-left: auto;
 }
 p {
   margin: 0;
@@ -65,4 +67,12 @@ p {
 .Icon {
   color: #b7b7b7;
   font-size: 32px;
+}
+@media screen and (max-width: 991px) {
+  .PWrapper {
+    margin-left: 0;
+  }
+  .IconWrapper, .FormWrapper{
+    margin-left: auto;
+  }
 }

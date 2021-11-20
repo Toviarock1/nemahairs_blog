@@ -10,7 +10,7 @@ const Footer = () => {
             <footer className={classes.Footer}>
                 <Container>
                     <Row>
-                        <Col>
+                        <Col xs={12} lg={3}>
                             <div>
                                 <ul>
                                     <li><h2 className={classes.Logo}>Nemahairs</h2></li>
@@ -18,7 +18,7 @@ const Footer = () => {
                                 </ul>
                             </div>
                         </Col>
-                        <Col>
+                        <Col xs={12} lg={3}>
                             <div>
                                 <ul>
                                     <li><h4>Categories</h4></li>
@@ -30,7 +30,7 @@ const Footer = () => {
                                 </ul>
                             </div>
                         </Col>
-                        <Col>
+                        <Col xs={12} lg={3}>
                             <div>
                                 <ul>
                                     <li><h4>Customer</h4></li>
@@ -42,7 +42,7 @@ const Footer = () => {
                                 </ul>
                             </div>
                         </Col>
-                        <Col>
+                        <Col xs={12} lg={3}>
                             <div>
                                 <ul>
                                     <li><h4>Company</h4></li>
