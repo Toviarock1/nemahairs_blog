@@ -41,8 +41,8 @@ const SinglePost = () => {
         dispatch(fetchPost(slug));
         dispatch(fetchAllCategories());
         dispatch(fetchAllComments(slug));
-        dispatch(fetchAuthor())
-        dispatch(fetchPopularPost())
+        dispatch(fetchAuthor());
+        dispatch(fetchPopularPost());
 
     }, [slug, dispatch]);
 

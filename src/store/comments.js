@@ -1,10 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from './../axios-instance';
+import axios from "./../axios-instance";
 
-export const fetchAllComments = createAsyncThunk("comments/fetchAllComments", async (slug) => {
-  const response = await axios.get(`/${slug}.json`);
-  return response.data;
-});
+export const fetchAllComments = createAsyncThunk(
+  "comments/fetchAllComments",
+  async (slug) => {
+    const response = await axios.get(`/${slug}.json`);
+    return response.data;
+  }
+);
 
 // try {
 //     //const response = await fetch(`url`); //where you want to fetch data
@@ -15,19 +18,18 @@ export const fetchAllComments = createAsyncThunk("comments/fetchAllComments", as
 //      return thunkAPI.rejectWithValue({ error: error.message });
 //   }
 
-
 const commentSlice = createSlice({
   name: "comment",
   initialState: {
     loading: true,
-    comments: []
+    comments: [],
   },
   extraReducers: {
-      [fetchAllComments.fulfilled] : (state, action) => {
-        state.loading = false;
-        state.comments = action.payload;
-      }
-  }
+    [fetchAllComments.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.comments = action.payload;
+    },
+  },
 });
 
 export default commentSlice.reducer;
