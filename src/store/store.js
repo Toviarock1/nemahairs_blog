@@ -10,5 +10,6 @@ export const store = configureStore({
         post: singlePostReducer,
         comments: commentsReducer,
         about: aboutReducer
-    }
+    },
+    devTools: false
 })
