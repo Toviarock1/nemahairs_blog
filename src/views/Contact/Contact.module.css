@@ -1,0 +1,12 @@
+.Section {
+    margin: 10% auto;
+}
+
+.FormWrapper {
+    background-color: #212529;
+    padding: 50px;
+    color: white;
+    width: 50%;
+    border-radius: 20px;
+    /* margin: auto 50%; */
+}

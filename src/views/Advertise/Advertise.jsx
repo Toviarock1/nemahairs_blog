@@ -1,106 +1,203 @@
-import React from 'react'
-import { Col, Container, Row, Button, Form } from 'react-bootstrap';
-import { GiAcousticMegaphone, AiOutlineLineChart, MdOutlineMonetizationOn } from 'react-icons/all'
-import image from './../../assets/svgs/Mobile Marketing-rafiki.svg';
-import classes from './Advertise.module.css';
+import React from "react";
+import { Col, Container, Row, Button, Form, InputGroup } from "react-bootstrap";
+import emailjs from "@emailjs/browser";
+import {
+  GiAcousticMegaphone,
+  AiOutlineLineChart,
+  MdOutlineMonetizationOn,
+} from "react-icons/all";
+import image from "./../../assets/svgs/Mobile Marketing-rafiki.svg";
+import classes from "./Advertise.module.css";
 
-const Advertise = () => {
-    return (
-        <section className={classes.Advertise}>
-            <div className={classes.Bg}>
-                <Container>
-                    <Row>
-                        <Col xs={12} lg={6}>
-                            <div className={classes.SectionOne}>
-                                <p>Advertise</p>
-                                <h2>Increase visibility and sales on Nemahairs with advertising</h2>
-                                <p>Did you know that sponsored ads can help you boost your visibility, reach more shoppers and increase your sales? Sponsored ads campaigns are easy to set up, and we’ll give you $50 in free clicks* to help you get started. Terms and conditions apply.</p>
-                                <Button>Start Advertising</Button>
-                            </div>
-                        </Col>
-                        <Col xs={12} lg={6}>
-                            <img src={image} alt="" />
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-            <div className={classes.SectionTwo}>
-                <Container>
-                    <h3>Achieve your business goals</h3>
-                    <div>
-                        <Row>
-                            <Col className={classes.SectionTwo__Col} xs={12} lg={4}>
-                                <GiAcousticMegaphone className={classes.Icons} />
-                                <h4>Get discovered</h4>
-                                <p>
-                                    Advertising provides a visibility boost to your brand and products. Ads appear in highly visible placements, within shopping results or on product detail pages.
-                                </p>
-                            </Col>
-                            <Col className={classes.SectionTwo__Col} xs={12} lg={4}>
-                                <AiOutlineLineChart className={classes.Icons} />
-                                <h4>Increase sales</h4>
-                                <p>
-                                    Many shoppers come to Amazon ready to buy. Advertising can help you reach customers who are looking for products like yours.
-                                </p>
-                            </Col>
-                            <Col className={classes.SectionTwo__Col} xs={12} lg={4}>
-                                <div>
-                                    <MdOutlineMonetizationOn className={classes.Icons} />
-                                </div>
-                                <h4>Low cost</h4>
-                                <p>
-                                    Pay only for the clicks your ads receive. Campaign reports track ad spend and performance, so you can learn what’s working and fine-tune your campaigns.
-                                </p>
-                            </Col>
-                        </Row>
-                    </div>
-
-                </Container>
-            </div>
-            <div className={classes.SectionThree}>
-                <Container>
-                    <h3>Advertise now</h3>
-                    <Form>
-                        <Row>
-                            <Col xs={12} lg={6}>
-                                <label>First name</label>
-                                <Form.Control />
-                            </Col>
-                            <Col xs={12} lg={6}>
-                                <label>Last name</label>
-                                <Form.Control />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xs={12} lg={6}>
-                                <label>Company name</label>
-                                <Form.Control />
-                            </Col>
-                            <Col xs={12} lg={6}>
-                                <label>Company email</label>
-                                <Form.Control type="email" />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xs={12} lg={6}>
-                                <label>Phone number</label>
-                                <Form.Control />
-                            </Col>
-                            <Col xs={12} lg={6}>
-                                <label>Country</label>
-                                <Form.Control />
-                            </Col>
-                        </Row>
-                        <label>Message</label>
-                        <Form.Control as="textarea" />
-                        <div className="text-center">
-                        <Button>Send</Button>
-                        </div>
-                    </Form>
-                </Container>
-            </div>
-        </section>
-    )
-}
+const Advertise = ({
+  validated,
+  handleSubmit,
+  setContactForm,
+  contactForm,
+  disabledBtn,
+}) => {
+  return (
+    <section className={classes.Advertise}>
+      <div className={classes.Bg}>
+        <Container>
+          <Row>
+            <Col xs={12} lg={6}>
+              <div className={classes.SectionOne}>
+                <p>Advertise</p>
+                <h2>
+                  Increase visibility and sales on Nemahairs with advertising
+                </h2>
+                <p>
+                  Did you know that sponsored ads can help you boost your
+                  visibility, reach more shoppers and increase your sales?
+                  Sponsored ads campaigns are easy to set up, and we’ll give you
+                  $50 in free clicks* to help you get started. Terms and
+                  conditions apply.
+                </p>
+                <Button>Start Advertising</Button>
+              </div>
+            </Col>
+            <Col xs={12} lg={6}>
+              <img src={image} alt="" />
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <div className={classes.SectionTwo}>
+        <Container>
+          <h3>Achieve your business goals</h3>
+          <div>
+            <Row>
+              <Col className={classes.SectionTwo__Col} xs={12} lg={4}>
+                <GiAcousticMegaphone className={classes.Icons} />
+                <h4>Get discovered</h4>
+                <p>
+                  Advertising provides a visibility boost to your brand and
+                  products. Ads appear in highly visible placements, within
+                  shopping results or on product detail pages.
+                </p>
+              </Col>
+              <Col className={classes.SectionTwo__Col} xs={12} lg={4}>
+                <AiOutlineLineChart className={classes.Icons} />
+                <h4>Increase sales</h4>
+                <p>
+                  Many shoppers come to Amazon ready to buy. Advertising can
+                  help you reach customers who are looking for products like
+                  yours.
+                </p>
+              </Col>
+              <Col className={classes.SectionTwo__Col} xs={12} lg={4}>
+                <div>
+                  <MdOutlineMonetizationOn className={classes.Icons} />
+                </div>
+                <h4>Low cost</h4>
+                <p>
+                  Pay only for the clicks your ads receive. Campaign reports
+                  track ad spend and performance, so you can learn what’s
+                  working and fine-tune your campaigns.
+                </p>
+              </Col>
+            </Row>
+          </div>
+        </Container>
+      </div>
+      <div className={classes.SectionThree}>
+        <Container>
+          <h3>Advertise now</h3>
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Row className="mb-3">
+              <Form.Group as={Col} md="4" controlId="validationCustom01">
+                <Form.Label>First name</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  name="firstname"
+                  onChange={(e) =>
+                    setContactForm({
+                      ...contactForm,
+                      firstName: e.target.value,
+                    })
+                  }
+                />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" controlId="validationCustom02">
+                <Form.Label>Last name</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  name="lastname"
+                  onChange={(e) =>
+                    setContactForm({ ...contactForm, lastName: e.target.value })
+                  }
+                />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+                <Form.Label>Company name</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  name="companyname"
+                  onChange={(e) =>
+                    setContactForm({
+                      ...contactForm,
+                      companyName: e.target.value,
+                    })
+                  }
+                />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row className="mb-3">
+              <Form.Group as={Col} md="6" controlId="validationCustom03">
+                <Form.Label>Company email</Form.Label>
+                <Form.Control
+                  required
+                  type="email"
+                  name="companyemail"
+                  onChange={(e) =>
+                    setContactForm({
+                      ...contactForm,
+                      companyEmail: e.target.value,
+                    })
+                  }
+                />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="3" controlId="validationCustom04">
+                <Form.Label>Phone number</Form.Label>
+                <Form.Control
+                  required
+                  type="number"
+                  name="phonenumber"
+                  onChange={(e) =>
+                    setContactForm({
+                      ...contactForm,
+                      phoneNumber: e.target.value,
+                    })
+                  }
+                />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="3" controlId="validationCustom05">
+                <Form.Label>Country</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  name="country"
+                  onChange={(e) =>
+                    setContactForm({
+                      ...contactForm,
+                      country: e.target.value,
+                    })
+                  }
+                />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Form.Group className="mb-3">
+              <Form.Label>Message</Form.Label>
+              <Form.Control
+                required
+                type="textarea"
+                name="message"
+                onChange={(e) =>
+                  setContactForm({
+                    ...contactForm,
+                    message: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            <Button type="submit" disabled={disabledBtn}>
+              Submit form
+            </Button>
+          </Form>
+        </Container>
+      </div>
+    </section>
+  );
+};
 
 export default Advertise;
