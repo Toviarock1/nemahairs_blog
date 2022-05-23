@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import client from "../client";
 
-export const fetchAllPost = createAsyncThunk("posts/fetchAllPost", async () => {
+export const fetchFirstSevenPost = createAsyncThunk("posts/fetchFirstSevenPost", async () => {
   const response = await client.fetch(
     `*[_type == "post"] | order(publishedAt desc) {
         title,
@@ -22,6 +22,29 @@ export const fetchAllPost = createAsyncThunk("posts/fetchAllPost", async () => {
   );
   return response;
 });
+
+export const fetchAllPost = createAsyncThunk("posts/fetchAllPost", async () => {
+  const response = await client.fetch(
+    `*[_type == "post"] | order(publishedAt desc) {
+        title,
+        publishedAt,
+        slug,
+        "tag": *[_type=='category']{ title },
+        author -> {
+            name
+        },
+        mainImage {
+            asset -> {
+                _id,
+                url
+            },
+            alt
+        }
+    }`
+  );
+  return response;
+});
+
 
 export const fetchAllSearchedPost = createAsyncThunk("posts/fetchAllSearchedPost", async (slug) => {
   const response = await client.fetch(
@@ -49,12 +72,22 @@ const allPostSlice = createSlice({
   name: "allPost",
   initialState: {
     allPost: [],
+    sevenPost: [],
     loading: true,
     searchedPost: [],
     searchedPostError: false,
-    allPostError: false
+    allPostError: false,
+    sevenPostError: false
   },
   extraReducers: {
+    [fetchFirstSevenPost.rejected]: (state, action) => {
+      state.loading = false;
+      state.sevenPostError = true;
+    },
+    [fetchFirstSevenPost.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.sevenPost = action.payload;
+    },
     [fetchAllPost.rejected]: (state, action) => {
       state.loading = false;
       state.allPostError = true;
@@ -74,7 +107,7 @@ const allPostSlice = createSlice({
       state.loading = false;
       state.searchedPostError = true;
     }
-    
+
   },
 });
 

@@ -3,23 +3,17 @@ import { useSelector } from "react-redux";
 import CenteredError from "../../components/CenteredError/CenteredError";
 import CenteredSpinner from "../../components/CenteredSpinner/CenteredSpinner";
 import Posts from "../../views/Posts/Posts";
-import Carousel from "./../../views/Carousel/Carousel";
 
-const Home = () => {
-  const posts = useSelector((state) => state.posts.sevenPost);
+const AllPost = () => {
+  const posts = useSelector((state) => state.posts.allPost);
   const loading = useSelector((state) => state.posts.loading);
-  const error = useSelector((state) => state.posts.sevenPostError);
+  const error = useSelector((state) => state.posts.allPostError);
   let content = <CenteredSpinner />;
 
   if (!loading) {
     if (!error) {
       if (posts) {
-        content = (
-          <>
-            <Carousel />
-            <Posts posts={posts} />
-          </>
-        );
+        content = <Posts posts={posts} />;
       }
     } else {
       content = <CenteredError />;
@@ -30,4 +24,4 @@ const Home = () => {
   return content;
 };
 
-export default Home;
+export default AllPost;
