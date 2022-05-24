@@ -1,6 +1,5 @@
 import React from "react";
 import { Col, Container, Row, Button, Form, InputGroup } from "react-bootstrap";
-import emailjs from "@emailjs/browser";
 import {
   GiAcousticMegaphone,
   AiOutlineLineChart,
@@ -9,13 +8,7 @@ import {
 import image from "./../../assets/svgs/Mobile Marketing-rafiki.svg";
 import classes from "./Advertise.module.css";
 
-const Advertise = ({
-  validated,
-  handleSubmit,
-  setContactForm,
-  contactForm,
-  disabledBtn,
-}) => {
+const Advertise = ({ validated, handleSubmit, disabledBtn }) => {
   return (
     <section className={classes.Advertise}>
       <div className={classes.Bg}>
@@ -88,107 +81,40 @@ const Advertise = ({
             <Row className="mb-3">
               <Form.Group as={Col} md="4" controlId="validationCustom01">
                 <Form.Label>First name</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  name="firstname"
-                  onChange={(e) =>
-                    setContactForm({
-                      ...contactForm,
-                      firstName: e.target.value,
-                    })
-                  }
-                />
+                <Form.Control required type="text" name="firstname" />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="4" controlId="validationCustom02">
                 <Form.Label>Last name</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  name="lastname"
-                  onChange={(e) =>
-                    setContactForm({ ...contactForm, lastName: e.target.value })
-                  }
-                />
+                <Form.Control required type="text" name="lastname" />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="4" controlId="validationCustomUsername">
                 <Form.Label>Company name</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  name="companyname"
-                  onChange={(e) =>
-                    setContactForm({
-                      ...contactForm,
-                      companyName: e.target.value,
-                    })
-                  }
-                />
+                <Form.Control required type="text" name="companyname" />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
             </Row>
             <Row className="mb-3">
               <Form.Group as={Col} md="6" controlId="validationCustom03">
                 <Form.Label>Company email</Form.Label>
-                <Form.Control
-                  required
-                  type="email"
-                  name="companyemail"
-                  onChange={(e) =>
-                    setContactForm({
-                      ...contactForm,
-                      companyEmail: e.target.value,
-                    })
-                  }
-                />
+                <Form.Control required type="email" name="companyemail" />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="3" controlId="validationCustom04">
                 <Form.Label>Phone number</Form.Label>
-                <Form.Control
-                  required
-                  type="number"
-                  name="phonenumber"
-                  onChange={(e) =>
-                    setContactForm({
-                      ...contactForm,
-                      phoneNumber: e.target.value,
-                    })
-                  }
-                />
+                <Form.Control required type="number" name="phonenumber" />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="3" controlId="validationCustom05">
                 <Form.Label>Country</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  name="country"
-                  onChange={(e) =>
-                    setContactForm({
-                      ...contactForm,
-                      country: e.target.value,
-                    })
-                  }
-                />
+                <Form.Control required type="text" name="country" />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
             </Row>
             <Form.Group className="mb-3">
               <Form.Label>Message</Form.Label>
-              <Form.Control
-                required
-                type="textarea"
-                name="message"
-                onChange={(e) =>
-                  setContactForm({
-                    ...contactForm,
-                    message: e.target.value,
-                  })
-                }
-              />
+              <Form.Control required type="textarea" name="message" />
             </Form.Group>
             <Button type="submit" disabled={disabledBtn}>
               Submit form

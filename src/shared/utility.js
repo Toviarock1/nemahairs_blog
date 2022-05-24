@@ -1,3 +1,5 @@
+import emailjs from '@emailjs/browser'
+
 export const getPostedDate = (publishedAt) => {
     let getDate;
     let month = [];
@@ -28,3 +30,25 @@ export const getPostedDate = (publishedAt) => {
     //return the new Date (03 november 2021)
     return newDate;
 }
+
+export const sendEmail = (e, setDisableBtn) => {
+    e.preventDefault();
+    setDisableBtn(true);
+    emailjs
+        .sendForm(
+            "nemahairs_contact_form",
+            "template_9v0qdk7",
+            e.target,
+            "9KGUBaheK_829zzHp"
+        )
+        .then(
+            (result) => {
+                setDisableBtn(false);
+                e.target.reset();
+            },
+            (error) => {
+                console.log(error.text);
+                setDisableBtn(false);
+            }
+        );
+};

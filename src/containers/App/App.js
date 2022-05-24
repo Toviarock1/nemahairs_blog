@@ -10,7 +10,7 @@ import SinglePost from "./../SinglePost/SinglePost";
 import Search from "./../Search/Search";
 import About from "../About/About";
 import Advertise from "../../containers/AdvertiseContainer/AdvertiseContainer";
-import Contact from "../../views/Contact/Contact";
+import Contact from "../../containers/ContactContainer/ContactContainer";
 import AllPost from "../AllPost/AllPost";
 
 function App() {

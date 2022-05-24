@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { sendEmail } from "./../../shared/utility";
-import Advertise from "../../views/Advertise/Advertise";
+import Contact from "../../views/Contact/Contact";
 
-const AdvertiseContainer = () => {
+const ContactContainer = () => {
   const [validated, setValidated] = useState(false);
   const [disableBtn, setDisableBtn] = useState(false);
 
@@ -23,8 +23,9 @@ const AdvertiseContainer = () => {
 
     setValidated(true);
   };
+
   return (
-    <Advertise
+    <Contact
       validated={validated}
       handleSubmit={handleSubmit}
       disabledBtn={disableBtn}
@@ -32,4 +33,4 @@ const AdvertiseContainer = () => {
   );
 };
 
-export default AdvertiseContainer;
+export default ContactContainer;
