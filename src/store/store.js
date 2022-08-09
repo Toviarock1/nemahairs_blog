@@ -11,5 +11,5 @@ export const store = configureStore({
         comments: commentsReducer,
         about: aboutReducer
     },
-    devTools: false
+    devTools: true
 })

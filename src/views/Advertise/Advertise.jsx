@@ -27,7 +27,7 @@ const Advertise = ({ validated, handleSubmit, disabledBtn }) => {
                   $50 in free clicks* to help you get started. Terms and
                   conditions apply.
                 </p>
-                <Button>Start Advertising</Button>
+                <Button href="#form">Start Advertising</Button>
               </div>
             </Col>
             <Col xs={12} lg={6}>
@@ -74,7 +74,7 @@ const Advertise = ({ validated, handleSubmit, disabledBtn }) => {
           </div>
         </Container>
       </div>
-      <div className={classes.SectionThree}>
+      <div className={classes.SectionThree} id="form">
         <Container>
           <h3>Advertise now</h3>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
