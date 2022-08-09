@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchFirstSevenPost, fetchAllPost } from "../../store/allPost";
+import {fetchSocialMediaLinks} from "../../store/socialHandles"
 import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from "../../hoc/Layout/Layout";
 import Home from "./../Home/Home";
@@ -19,6 +20,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchFirstSevenPost());
     dispatch(fetchAllPost());
+    dispatch(fetchSocialMediaLinks())
   }, [dispatch]);
 
   console.log(searchText);
