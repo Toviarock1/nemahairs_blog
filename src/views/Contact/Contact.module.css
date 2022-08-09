@@ -10,3 +10,9 @@
     border-radius: 20px;
     margin: auto;
 }
+
+@media screen and (max-width: 900px) {
+    .FormWrapper{
+        width: 100%;
+    }
+}
