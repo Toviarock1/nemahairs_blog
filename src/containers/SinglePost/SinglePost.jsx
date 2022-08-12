@@ -44,6 +44,7 @@ const SinglePost = () => {
   const commentDetails = useSelector((state) => state.comments.comments);
   const author = useSelector((state) => state.post.author);
   const popularPost = useSelector((state) => state.post.popularPost);
+  const socialMediaLinks = useSelector((state) => state.socialMediaLinks.links);
   const dispatch = useDispatch();
   //params
   const { slug } = useParams();
@@ -55,6 +56,7 @@ const SinglePost = () => {
     dispatch(fetchAllComments(slug));
     dispatch(fetchAuthor());
     dispatch(fetchPopularPost());
+    // console.log(socialMediaLinks);
   }, [slug, dispatch]);
 
   // console.log(commentDetails)
@@ -185,6 +187,10 @@ const SinglePost = () => {
           }
           aboutMeName={author.name}
           aboutMeDescription={author.about_me_post_card}
+          facebookUrl={socialMediaLinks[0].facebook_link}
+          twitterUrl={socialMediaLinks[0].twitter_link}
+          instagramUrl={socialMediaLinks[0].instagram_link}
+          linkedinUrl={socialMediaLinks[0].linkedin_link}
           disableBtn={sendComment}
           popularPost={popularPost}
         />
