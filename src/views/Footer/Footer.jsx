@@ -3,10 +3,16 @@ import { Col, Container, Row } from "react-bootstrap";
 import Subcribe from "../../components/Subcribe/Subcribe";
 import classes from "./Footer.module.css";
 
-const Footer = () => {
+const Footer = (props) => {
   return (
     <>
-      <Subcribe />
+      <Subcribe
+        footerFacebookUrl={props.facebookUrl}
+        footerTwitterUrl={props.twitterUrl}
+        footerInstagramUrl={props.instagramUrl}
+        footerLinkedinUrl={props.linkedinUrl}
+        footerPinterestUrl={props.pinterestUrl}
+      />
       <footer className={classes.Footer}>
         <Container>
           <Row>
