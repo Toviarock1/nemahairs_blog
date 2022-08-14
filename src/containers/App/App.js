@@ -18,7 +18,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   const [searchText, setSearchText] = useState("");
   //redux
-  const socialMediaLinks = useSelector((state) => state.socialMediaLinks.links);
+  const socialMediaLinks = useSelector(
+    (state) => state.socialMediaLinks.links[0]
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchFirstSevenPost());
@@ -26,16 +28,16 @@ function App() {
     dispatch(fetchSocialMediaLinks());
   }, [dispatch]);
 
-  console.log(searchText);
+  console.log(socialMediaLinks);
   return (
     <Layout
       searchText={searchText}
       setSearchText={(e) => setSearchText(e.target.value)}
-      facebookUrl={socialMediaLinks[0].facebook_link}
-      twitterUrl={socialMediaLinks[0].twitter_link}
-      instagramUrl={socialMediaLinks[0].instagram_link}
-      linkedinUrl={socialMediaLinks[0].linkedin_link}
-      pinterestUrl={socialMediaLinks[0].pinterest_link}
+      facebookUrl={socialMediaLinks ? socialMediaLinks.facebook_link : ""}
+      twitterUrl={socialMediaLinks ? socialMediaLinks.twitter_link : ""}
+      instagramUrl={socialMediaLinks ? socialMediaLinks.instagram_link : ""}
+      linkedinUrl={socialMediaLinks ? socialMediaLinks.linkedin_link : ""}
+      pinterestUrl={socialMediaLinks ? socialMediaLinks.pintrest_link : ""}
     >
       <Switch>
         <Route path="/" exact>
