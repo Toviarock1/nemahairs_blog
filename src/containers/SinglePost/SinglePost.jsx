@@ -187,18 +187,12 @@ const SinglePost = () => {
           }
           aboutMeName={author.name}
           aboutMeDescription={author.about_me_post_card}
-          facebookUrl={
-            socialMediaLinks.links ? socialMediaLinks.links.facebook_link : "#"
-          }
-          twitterUrl={
-            socialMediaLinks.links ? socialMediaLinks.links.twitter_link : "#"
-          }
+          facebookUrl={socialMediaLinks ? socialMediaLinks.facebook_link : "#"}
+          twitterUrl={socialMediaLinks ? socialMediaLinks.twitter_link : "#"}
           instagramUrl={
-            socialMediaLinks.links ? socialMediaLinks.links.instagram_link : "#"
+            socialMediaLinks ? socialMediaLinks.instagram_link : "#"
           }
-          linkedinUrl={
-            socialMediaLinks.links ? socialMediaLinks.links.linkedin_link : "#"
-          }
+          linkedinUrl={socialMediaLinks ? socialMediaLinks.linkedin_link : "#"}
           disableBtn={sendComment}
           popularPost={popularPost}
         />
