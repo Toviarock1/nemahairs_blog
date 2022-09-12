@@ -56,10 +56,10 @@ const SinglePost = () => {
     dispatch(fetchAllComments(slug));
     dispatch(fetchAuthor());
     dispatch(fetchPopularPost());
-    // console.log(socialMediaLinks);
+    console.log(socialMediaLinks);
   }, [slug, dispatch]);
 
-  // console.log(commentDetails)
+  // console.log(socialMediaLinks.links[0]);
 
   //read post aloud
   const textToVoiceHandler = () => {
@@ -187,10 +187,18 @@ const SinglePost = () => {
           }
           aboutMeName={author.name}
           aboutMeDescription={author.about_me_post_card}
-          facebookUrl={socialMediaLinks[0].facebook_link}
-          twitterUrl={socialMediaLinks[0].twitter_link}
-          instagramUrl={socialMediaLinks[0].instagram_link}
-          linkedinUrl={socialMediaLinks[0].linkedin_link}
+          facebookUrl={
+            socialMediaLinks.links ? socialMediaLinks.links.facebook_link : "#"
+          }
+          twitterUrl={
+            socialMediaLinks.links ? socialMediaLinks.links.twitter_link : "#"
+          }
+          instagramUrl={
+            socialMediaLinks.links ? socialMediaLinks.links.instagram_link : "#"
+          }
+          linkedinUrl={
+            socialMediaLinks.links ? socialMediaLinks.links.linkedin_link : "#"
+          }
           disableBtn={sendComment}
           popularPost={popularPost}
         />

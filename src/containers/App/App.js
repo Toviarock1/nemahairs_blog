@@ -18,9 +18,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   const [searchText, setSearchText] = useState("");
   //redux
-  const socialMediaLinks = useSelector(
-    (state) => state.socialMediaLinks.links[0]
-  );
+  const socialMediaLinks = useSelector((state) => state.socialMediaLinks);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchFirstSevenPost());
@@ -28,16 +26,23 @@ function App() {
     dispatch(fetchSocialMediaLinks());
   }, [dispatch]);
 
-  console.log(socialMediaLinks);
+  // useEffect(() => {
+  //   console.log(socialMediaLinks.links[0].facebook_link);
+  // }, []);
+
   return (
     <Layout
       searchText={searchText}
       setSearchText={(e) => setSearchText(e.target.value)}
-      facebookUrl={socialMediaLinks ? socialMediaLinks.facebook_link : ""}
-      twitterUrl={socialMediaLinks ? socialMediaLinks.twitter_link : ""}
-      instagramUrl={socialMediaLinks ? socialMediaLinks.instagram_link : ""}
-      linkedinUrl={socialMediaLinks ? socialMediaLinks.linkedin_link : ""}
-      pinterestUrl={socialMediaLinks ? socialMediaLinks.pintrest_link : ""}
+      facebookUrl={socialMediaLinks ? socialMediaLinks.links.facebook_link : ""}
+      twitterUrl={socialMediaLinks ? socialMediaLinks.links.twitter_link : ""}
+      instagramUrl={
+        socialMediaLinks ? socialMediaLinks.links.instagram_link : ""
+      }
+      linkedinUrl={socialMediaLinks ? socialMediaLinks.links.linkedin_link : ""}
+      pinterestUrl={
+        socialMediaLinks ? socialMediaLinks.links.pintrest_link : ""
+      }
     >
       <Switch>
         <Route path="/" exact>

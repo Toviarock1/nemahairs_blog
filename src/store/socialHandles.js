@@ -22,7 +22,7 @@ const socialHandlesSlice = createSlice({
   },
   extraReducers: {
     [fetchSocialMediaLinks.fulfilled]: (state, action) => {
-      state.links = [...action.payload];
+      state.links = { ...action.payload[0] };
     },
   },
 });

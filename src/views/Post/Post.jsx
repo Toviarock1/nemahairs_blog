@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Container, Row, Button, Image, Spinner } from "react-bootstrap";
+import { Helmet } from "react-helmet";
 import AboutMeCard from "../../components/Cards/AboutMeCard/AboutMeCard";
 import AdvertisementCard from "../../components/Cards/AdvertisementCard/AdvertisementCard";
 import CategoriesCard from "../../components/Cards/CategoriesCard/CategoriesCard";
@@ -14,6 +15,9 @@ const Post = (props) => {
   return (
     <>
       <section className={classes.Post}>
+        <Helmet>
+          <title>{props.title}</title>
+        </Helmet>
         <article>
           <Container className={classes.Container}>
             <Row>
