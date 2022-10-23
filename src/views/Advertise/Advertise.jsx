@@ -54,7 +54,7 @@ const Advertise = ({ validated, handleSubmit, disabledBtn }) => {
                 <AiOutlineLineChart className={classes.Icons} />
                 <h4>Increase sales</h4>
                 <p>
-                  Many shoppers come to Amazon ready to buy. Advertising can
+                  Many shoppers come to Nemahairs ready to buy. Advertising can
                   help you reach customers who are looking for products like
                   yours.
                 </p>
