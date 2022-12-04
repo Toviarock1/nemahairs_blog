@@ -1,22 +1,31 @@
-import React from "react";
-import { Col, Container, Row, Button, Image, Spinner } from "react-bootstrap";
-import { Helmet } from "react-helmet";
-import AboutMeCard from "../../components/Cards/AboutMeCard/AboutMeCard";
-import AdvertisementCard from "../../components/Cards/AdvertisementCard/AdvertisementCard";
-import CategoriesCard from "../../components/Cards/CategoriesCard/CategoriesCard";
-import PopularPostCard from "../../components/Cards/PopularPostCard/PopularPostCard";
-import FollowUsCard from "../../components/Cards/FollowUsCard/FollowUsCard";
-import Newsletter from "../../components/Cards/Newsletter/Newsletter";
-import BlockContent from "@sanity/block-content-to-react";
-import Avater from "./../../assets/images/avater.png";
-import classes from "./Post.module.css";
+import React from 'react';
+import { Col, Container, Row, Button, Image, Spinner } from 'react-bootstrap';
+import { Helmet } from 'react-helmet';
+import AboutMeCard from '../../components/Cards/AboutMeCard/AboutMeCard';
+import AdvertisementCard from '../../components/Cards/AdvertisementCard/AdvertisementCard';
+import CategoriesCard from '../../components/Cards/CategoriesCard/CategoriesCard';
+import PopularPostCard from '../../components/Cards/PopularPostCard/PopularPostCard';
+import FollowUsCard from '../../components/Cards/FollowUsCard/FollowUsCard';
+import Newsletter from '../../components/Cards/Newsletter/Newsletter';
+import BlockContent from '@sanity/block-content-to-react';
+import Avater from './../../assets/images/avater.png';
+import classes from './Post.module.css';
 
 const Post = (props) => {
   return (
     <>
       <section className={classes.Post}>
         <Helmet>
+          <meta charSet="utf-8" />
           <title>{props.title}</title>
+          <link
+            rel="canonical"
+            href={`https://nemahairs.com/post/${props.slug}`}
+          />
+          <meta
+            name="description"
+            content={props.content[0].children[0].text}
+          />
         </Helmet>
         <article>
           <Container className={classes.Container}>
@@ -81,7 +90,7 @@ const Post = (props) => {
                             >
                               Reply
                             </Button>
-                            {comment.reply !== "" && (
+                            {comment.reply !== '' && (
                               <div>
                                 {comment.reply.map((reply, index) => {
                                   return (
@@ -107,7 +116,7 @@ const Post = (props) => {
                           </div>
                           <form
                             className={`${classes.Comment}`}
-                            style={{ display: "none" }}
+                            style={{ display: 'none' }}
                             id={`commentReplyForm${commentIndex}`}
                           >
                             <input
@@ -166,7 +175,7 @@ const Post = (props) => {
                       {props.disableBtn ? (
                         <Spinner animation="border" variant="secondary" />
                       ) : (
-                        "Submit"
+                        'Submit'
                       )}
                     </Button>
                   </div>

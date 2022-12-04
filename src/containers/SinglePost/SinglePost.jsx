@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from "react";
-import axios from "./../../axios-instance";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
-import CenteredError from "../../components/CenteredError/CenteredError";
-import CenteredSpinner from "../../components/CenteredSpinner/CenteredSpinner";
-import { fetchAllComments } from "../../store/comments";
+import React, { useEffect, useState } from 'react';
+import axios from './../../axios-instance';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import CenteredError from '../../components/CenteredError/CenteredError';
+import CenteredSpinner from '../../components/CenteredSpinner/CenteredSpinner';
+import { fetchAllComments } from '../../store/comments';
 import {
   fetchAdvert,
   fetchAllCategories,
   fetchAuthor,
   fetchPopularPost,
   fetchPost,
-} from "../../store/singlePost";
-import Post from "../../views/Post/Post";
-import { getPostedDate } from "../../shared/utility";
+} from '../../store/singlePost';
+import Post from '../../views/Post/Post';
+import { getPostedDate } from '../../shared/utility';
 
 const SinglePost = () => {
-  const body = document.querySelector("body");
-  const script = document.createElement("script");
+  const body = document.querySelector('body');
+  const script = document.createElement('script');
   script.setAttribute(
-    "src",
-    "https://code.responsivevoice.org/responsivevoice.js?key=giWDAPkG"
+    'src',
+    'https://code.responsivevoice.org/responsivevoice.js?key=giWDAPkG'
   );
   body.appendChild(script);
   //variables
@@ -29,10 +29,10 @@ const SinglePost = () => {
   let allReplies = [];
   //state
   //data to post to the backend
-  const [fullName, setFullName] = useState("");
-  const [comment, setComment] = useState("");
-  const [repliedCommentMessage, setRepliedCommentMessage] = useState("");
-  const [repliedCommentFullName, setRepliedCommentFullName] = useState("");
+  const [fullName, setFullName] = useState('');
+  const [comment, setComment] = useState('');
+  const [repliedCommentMessage, setRepliedCommentMessage] = useState('');
+  const [repliedCommentFullName, setRepliedCommentFullName] = useState('');
   //disable send comment btn
   const [sendComment, setSendComment] = useState(false);
   //redux
@@ -64,8 +64,8 @@ const SinglePost = () => {
   //read post aloud
   const textToVoiceHandler = () => {
     window.responsiveVoice.speak(
-      document.querySelector(".speak").textContent,
-      "US English Male"
+      document.querySelector('.speak').textContent,
+      'US English Male'
     );
   };
   const stopTextToVoiceHandler = () => {
@@ -80,17 +80,17 @@ const SinglePost = () => {
 
   const submitCommentHandler = () => {
     setSendComment(true);
-    console.log("start");
+    console.log('start');
     axios
       .post(`/${slug}.json`, {
         fullName: fullName,
         comment: comment,
-        reply: "",
+        reply: '',
       })
       .then((res) => {
         dispatch(fetchAllComments(slug));
-        setComment("");
-        setFullName("");
+        setComment('');
+        setFullName('');
         setSendComment(false);
       })
       .catch((err) => {
@@ -100,7 +100,7 @@ const SinglePost = () => {
   };
 
   const submitCommentReplyHandler = (id) => {
-    console.log("start");
+    console.log('start');
     axios
       .post(`/${slug}/${id}/reply.json`, {
         fullName: repliedCommentFullName,
@@ -116,13 +116,13 @@ const SinglePost = () => {
 
   const showReplyBtnHandler = (id) => {
     if (
-      document.querySelector(`#commentReplyForm${id}`).style.display === "grid"
+      document.querySelector(`#commentReplyForm${id}`).style.display === 'grid'
     ) {
-      document.querySelector(`#commentReplyForm${id}`).style.display = "none";
-      document.querySelector(`.replyBtn${id}`).textContent = "Reply";
+      document.querySelector(`#commentReplyForm${id}`).style.display = 'none';
+      document.querySelector(`.replyBtn${id}`).textContent = 'Reply';
     } else {
-      document.querySelector(`#commentReplyForm${id}`).style.display = "grid";
-      document.querySelector(`.replyBtn${id}`).textContent = "Close";
+      document.querySelector(`#commentReplyForm${id}`).style.display = 'grid';
+      document.querySelector(`.replyBtn${id}`).textContent = 'Close';
     }
   };
 
@@ -160,6 +160,7 @@ const SinglePost = () => {
           }
           advertAlt={advert.title}
           link={advert.link}
+          slug={slug}
           publishedAt={getPostedDate(post.publishedAt)}
           stop={stopTextToVoiceHandler}
           start={textToVoiceHandler}
@@ -187,12 +188,12 @@ const SinglePost = () => {
           }
           aboutMeName={author.name}
           aboutMeDescription={author.about_me_post_card}
-          facebookUrl={socialMediaLinks ? socialMediaLinks.facebook_link : "#"}
-          twitterUrl={socialMediaLinks ? socialMediaLinks.twitter_link : "#"}
+          facebookUrl={socialMediaLinks ? socialMediaLinks.facebook_link : '#'}
+          twitterUrl={socialMediaLinks ? socialMediaLinks.twitter_link : '#'}
           instagramUrl={
-            socialMediaLinks ? socialMediaLinks.instagram_link : "#"
+            socialMediaLinks ? socialMediaLinks.instagram_link : '#'
           }
-          linkedinUrl={socialMediaLinks ? socialMediaLinks.linkedin_link : "#"}
+          linkedinUrl={socialMediaLinks ? socialMediaLinks.linkedin_link : '#'}
           disableBtn={sendComment}
           popularPost={popularPost}
         />

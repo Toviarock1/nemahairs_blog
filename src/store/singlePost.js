@@ -1,14 +1,15 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import client from "../client";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import client from '../client';
 
 export const fetchAdvert = createAsyncThunk(
-  "post/fetchAdvert",
+  'post/fetchAdvert',
   async (params, { dispatch }) => {
     // dispatch(toggleLoading())
     const response = await client.fetch(
       `*[_type == "advertisement"] {
         title,
         link,
+        slug,
         image {
             asset -> {
                 _id,
@@ -21,7 +22,7 @@ export const fetchAdvert = createAsyncThunk(
   }
 );
 
-export const fetchPost = createAsyncThunk("post/fetchPost", async (slug) => {
+export const fetchPost = createAsyncThunk('post/fetchPost', async (slug) => {
   const response = await client.fetch(
     `*[slug.current == "${slug}"] {
         title,
@@ -44,7 +45,7 @@ export const fetchPost = createAsyncThunk("post/fetchPost", async (slug) => {
 });
 
 export const fetchAllCategories = createAsyncThunk(
-  "post/fetchAllCategories",
+  'post/fetchAllCategories',
   async () => {
     const response = await client.fetch(
       `*[_type == "category"]{
@@ -61,7 +62,7 @@ export const fetchAllCategories = createAsyncThunk(
   }
 );
 
-export const fetchAuthor = createAsyncThunk("author/fetchAuthor", async () => {
+export const fetchAuthor = createAsyncThunk('author/fetchAuthor', async () => {
   const response = await client.fetch(
     `*[_type == "author"]{
       name,
@@ -79,7 +80,7 @@ export const fetchAuthor = createAsyncThunk("author/fetchAuthor", async () => {
 });
 
 export const fetchPopularPost = createAsyncThunk(
-  "posts/fetchPopularPost",
+  'posts/fetchPopularPost',
   async () => {
     const response = client.fetch(`
     *[_type == "popular-post"] {
@@ -95,12 +96,12 @@ export const fetchPopularPost = createAsyncThunk(
       }
     }[0]
   `);
-  return response;
+    return response;
   }
 );
 
 const singlePostSlice = createSlice({
-  name: "singlePost",
+  name: 'singlePost',
   initialState: {
     advert: [],
     loading: true,
@@ -108,7 +109,7 @@ const singlePostSlice = createSlice({
     error: false,
     categories: [],
     author: [],
-    popularPost: []
+    popularPost: [],
   },
   reducers: {
     toggleLoading: (state) => {
@@ -152,7 +153,7 @@ const singlePostSlice = createSlice({
     [fetchPopularPost.fulfilled]: (state, action) => {
       state.loading = false;
       state.popularPost = [...action.payload.posts];
-      console.trace(action.payload)
+      console.trace(action.payload);
     },
     [fetchPopularPost.rejected]: (state, action) => {
       state.error = true;
