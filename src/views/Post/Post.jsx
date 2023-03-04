@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Container, Row, Button, Image, Spinner } from 'react-bootstrap';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import AboutMeCard from '../../components/Cards/AboutMeCard/AboutMeCard';
 import AdvertisementCard from '../../components/Cards/AdvertisementCard/AdvertisementCard';
 import CategoriesCard from '../../components/Cards/CategoriesCard/CategoriesCard';
@@ -18,6 +18,7 @@ const Post = (props) => {
         <Helmet>
           <meta charSet="utf-8" />
           <title>{props.title}</title>
+          <link rel="icon" href={props.img} />
           <link
             rel="canonical"
             href={`https://nemahairs.com/post/${props.slug}`}
@@ -26,6 +27,14 @@ const Post = (props) => {
             name="description"
             content={props.content[0].children[0].text}
           />
+          {/* Facebook tags */}
+          <meta property="og:type" content={'article'} />
+          <meta property="og:title" content={props.title} />
+          <meta
+            property="og:description"
+            content={props.content[0].children[0].text}
+          />
+          {/* End Facebook tags */}
         </Helmet>
         <article>
           <Container className={classes.Container}>
