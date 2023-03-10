@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 //react bootstrap components
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
-import HeaderForm from "../../components/HeaderForm/HeaderForm";
+import { Navbar, Container, Nav } from 'react-bootstrap';
+import HeaderForm from '../../components/HeaderForm/HeaderForm';
 //css
-import classes from "./Header.module.css";
+import classes from './Header.module.css';
 
 const Header = (props) => {
   return (

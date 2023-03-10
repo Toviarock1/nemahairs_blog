@@ -1,12 +1,12 @@
-import React from "react";
-import { Col, Container, Row, Button, Form, InputGroup } from "react-bootstrap";
+import React from 'react';
+import { Col, Container, Row, Button, Form } from 'react-bootstrap';
 import {
   GiAcousticMegaphone,
   AiOutlineLineChart,
   MdOutlineMonetizationOn,
-} from "react-icons/all";
-import image from "./../../assets/svgs/Mobile Marketing-rafiki.svg";
-import classes from "./Advertise.module.css";
+} from 'react-icons/all';
+import image from './../../assets/svgs/Mobile Marketing-rafiki.svg';
+import classes from './Advertise.module.css';
 
 const Advertise = ({ validated, handleSubmit, disabledBtn }) => {
   return (

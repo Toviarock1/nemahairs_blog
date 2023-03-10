@@ -56,7 +56,7 @@ const SinglePost = () => {
     dispatch(fetchAllComments(slug));
     dispatch(fetchAuthor());
     dispatch(fetchPopularPost());
-    console.log(socialMediaLinks);
+    // console.log(socialMediaLinks);
   }, [slug, dispatch]);
 
   // console.log(socialMediaLinks.links[0]);
