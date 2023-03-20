@@ -24,7 +24,7 @@ const Advertise = ({ validated, handleSubmit, disabledBtn }) => {
                   Did you know that sponsored ads can help you boost your
                   visibility, reach more shoppers and increase your sales?
                   Sponsored ads campaigns are easy to set up, and we’ll give you
-                  $50 in free clicks* to help you get started. Terms and
+                  $5 in free clicks* to help you get started. Terms and
                   conditions apply.
                 </p>
                 <Button href="#form">Start Advertising</Button>

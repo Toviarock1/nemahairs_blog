@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { sendEmail } from "./../../shared/utility";
-import Contact from "../../views/Contact/Contact";
+import React, { useState } from 'react';
+import { sendEmail } from './../../shared/utility';
+import Contact from '../../views/Contact/Contact';
 
 const ContactContainer = () => {
   const [validated, setValidated] = useState(false);
@@ -11,9 +11,9 @@ const ContactContainer = () => {
     setDisableBtn(true);
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
       setDisableBtn(false);
+      console.log(form.checkValidity());
     }
 
     if (validated) {

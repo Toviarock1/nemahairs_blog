@@ -210,7 +210,7 @@ const Post = (props) => {
                     img={props.advertImg}
                     alt={props.advertAlt}
                   />
-                  <CategoriesCard categories={props.categories} />
+                  {/* <CategoriesCard categories={props.categories} /> */}
                   <PopularPostCard popularPost={props.popularPost} />
                   <Newsletter
                     change={props.change}

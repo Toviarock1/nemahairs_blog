@@ -1,9 +1,9 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import CenteredError from "../../components/CenteredError/CenteredError";
-import CenteredSpinner from "../../components/CenteredSpinner/CenteredSpinner";
-import Posts from "../../views/Posts/Posts";
-import Carousel from "./../../views/Carousel/Carousel";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import CenteredError from '../../components/CenteredError/CenteredError';
+import CenteredSpinner from '../../components/CenteredSpinner/CenteredSpinner';
+import Posts from '../../views/Posts/Posts';
+import Carousel from './../../views/Carousel/Carousel';
 
 const Home = () => {
   const posts = useSelector((state) => state.posts.sevenPost);
@@ -16,7 +16,7 @@ const Home = () => {
       if (posts) {
         content = (
           <>
-            <Carousel />
+            {/* <Carousel /> */}
             <Posts posts={posts} />
           </>
         );
